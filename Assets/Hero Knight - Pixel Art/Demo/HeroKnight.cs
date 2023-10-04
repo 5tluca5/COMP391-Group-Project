@@ -71,6 +71,7 @@ public class HeroKnight : MonoBehaviour {
         float inputX = Input.GetAxis("Horizontal");
         float inputY = Input.GetAxis("Vertical");
 
+        
         // Swap direction of sprite depending on walk direction
         if (inputX > 0)
         {
@@ -87,6 +88,8 @@ public class HeroKnight : MonoBehaviour {
         // Move
         if (!m_rolling )
             m_body2d.velocity = new Vector2(inputX * m_speed, inputY * m_speed);
+
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);
 
         //Set AirSpeed in animator
         //m_animator.SetFloat("AirSpeedY", m_body2d.velocity.y);
@@ -144,7 +147,6 @@ public class HeroKnight : MonoBehaviour {
             m_animator.SetTrigger("Roll");
             m_body2d.velocity = new Vector2(m_facingDirection * m_rollForce, m_body2d.velocity.y);
         }
-            
 
         //Jump
         //else if (Input.GetKeyDown("space") && m_grounded && !m_rolling)
@@ -157,7 +159,7 @@ public class HeroKnight : MonoBehaviour {
         //}
 
         //Run
-        else if (Mathf.Abs(inputX) > Mathf.Epsilon)
+        else if (Mathf.Abs(inputX) > Mathf.Epsilon || Mathf.Abs(inputY) > Mathf.Epsilon)
         {
             // Reset timer
             m_delayToIdle = 0.05f;
