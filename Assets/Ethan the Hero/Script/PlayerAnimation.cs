@@ -43,7 +43,6 @@ namespace EthanTheHero
             #region IDLE & RUN
 
             myAnim.SetFloat(speed, Mathf.Abs(playerMv.move.x));
-            myAnim.SetFloat(speed, Mathf.Abs(playerMv.move.y));
 
             //Set Run Animation
             if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("RunIdleTrans"))
@@ -58,21 +57,21 @@ namespace EthanTheHero
 
             #region JUMP
 
-            //myAnim.SetBool(jump, playerMv.grounded);
-            //myAnim.SetFloat(yvelocity, myBody.velocity.y);
+            myAnim.SetBool(jump, playerMv.grounded);
+            myAnim.SetFloat(yvelocity, myBody.velocity.y);
 
             #endregion
 
             #region DASH
 
-            //myAnim.SetBool(dash, playerMv.isDashing);
+            myAnim.SetBool(dash, playerMv.isDashing);
 
             #endregion
 
             #region WALL SLIDING & WALL JUMP
 
-            //myAnim.SetBool(wallSliding, playerMv.wallSliding);
-            //myAnim.SetBool(wallJump, playerMv.wallJump);
+            myAnim.SetBool(wallSliding, playerMv.wallSliding);
+            myAnim.SetBool(wallJump, playerMv.wallJump);
 
             #endregion
 

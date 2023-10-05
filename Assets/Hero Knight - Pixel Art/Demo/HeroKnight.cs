@@ -19,6 +19,7 @@ public class HeroKnight : MonoBehaviour {
     private bool                m_isWallSliding = false;
     private bool                m_grounded = false;
     private bool                m_rolling = false;
+    private bool                runIdleIsPlayying = false;
     private int                 m_facingDirection = 1;
     private int                 m_currentAttack = 0;
     private float               m_timeSinceAttack = 0.0f;
@@ -156,21 +157,39 @@ public class HeroKnight : MonoBehaviour {
         //}
 
         //Run
-        else if (Mathf.Abs(inputX) > Mathf.Epsilon || Mathf.Abs(inputY) > Mathf.Epsilon)
-        {
-            // Reset timer
-            m_delayToIdle = 0.05f;
-            m_animator.SetInteger("AnimState", 1);
-        }
 
-        //Idle
-        else
+        m_animator.SetFloat("Speed", (Mathf.Abs(inputX) > Mathf.Epsilon || Mathf.Abs(inputY) > Mathf.Epsilon) ? 1 : 0);
+
+        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("RunIdleTrans"))
         {
-            // Prevents flickering transitions to idle
-            m_delayToIdle -= Time.deltaTime;
-                if(m_delayToIdle < 0)
-                    m_animator.SetInteger("AnimState", 0);
+            runIdleIsPlayying = true;
+            if (m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+                runIdleIsPlayying = false;
         }
+        m_animator.SetBool("RunIdlePlayying", runIdleIsPlayying);
+        //else if (Mathf.Abs(inputX) > Mathf.Epsilon || Mathf.Abs(inputY) > Mathf.Epsilon)
+        //{
+        //    // Reset timer
+        //    m_delayToIdle = 0.05f;
+        //    //m_animator.SetInteger("AnimState", 1);
+
+        //    if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("RunIdleTrans"))
+        //    {
+        //        runIdleIsPlayying = true;
+        //        if (m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+        //            runIdleIsPlayying = false;
+        //    }
+        //    m_animator.SetBool("RunIdlePlayying", runIdleIsPlayying);
+        //}
+
+        ////Idle
+        //else
+        //{
+        //    // Prevents flickering transitions to idle
+        //    m_delayToIdle -= Time.deltaTime;
+        //        if(m_delayToIdle < 0)
+        //            m_animator.SetInteger("AnimState", 0);
+        //}
     }
 
     // Animation Events
