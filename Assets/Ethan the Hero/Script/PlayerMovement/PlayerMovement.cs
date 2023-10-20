@@ -50,11 +50,10 @@ namespace EthanTheHero
 			if (isDashing || wallJump || myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack01") || myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack02") || myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack03"))
 				return;
 
-			//lastOnGroundTime -= Time.deltaTime;
+			lastOnGroundTime -= Time.deltaTime;
 
 			//Input Handler
 			move.x = Input.GetAxisRaw("Horizontal");
-			move.y = Input.GetAxisRaw("Vertical");
 			dashButtonPressed = Input.GetKeyDown(KeyCode.W);
 			jumpButtonPressed = Input.GetButtonDown("Jump");
 
@@ -79,15 +78,14 @@ namespace EthanTheHero
 			if (!wallSliding)
 				run(1);
 			//checks if set box overlaps with ground
-			//if (Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer))
-			//{
-			//	lastOnGroundTime = 0.1f;
-			//	grounded = true;
-			//}
-			//else
-			//	grounded = false;
+			if (Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer))
+			{
+				lastOnGroundTime = 0.1f;
+				grounded = true;
+			}
+			else
+				grounded = false;
 
-			grounded = true;
 
 			WallSlidngMechanic();
 		}
