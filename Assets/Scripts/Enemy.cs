@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : Mover
 {
-
+    public Animator anim;
     public float chaseSpeed = 0.5f;
 
     private Transform playerTransform;
@@ -15,6 +15,7 @@ public class Enemy : Mover
     {
         base.Start();
 
+        anim = GetComponent<Animator>();
         playerTransform = GameManager.instance.player.transform;
         startingPosition = this.transform.position;
         hitbox = GetComponentInChildren<BoxCollider2D>();
@@ -31,6 +32,7 @@ public class Enemy : Mover
 
         Vector3 chasingDirection = (delta.normalized);
 
+        anim.SetFloat("Speed", Mathf.Abs(chasingDirection.x));
         // Prevent infinite blocking
         //if (getBlockTimer > getBlockTime && blockingObject != "Player")
         //{
