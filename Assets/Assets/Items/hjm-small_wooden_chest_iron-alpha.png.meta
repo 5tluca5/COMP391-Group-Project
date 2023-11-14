@@ -1,0 +1,342 @@
+fileFormatVersion: 2
+guid: c7929c390583e3d4499d1bd5794e781e
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: hjm-small_wooden_chest_iron-alpha_0
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 454
+        width: 161
+        height: 142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c2e86c72c9ecc3419daf9912725d823
+      internalID: 973426173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hjm-small_wooden_chest_iron-alpha_1
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 516
+        width: 100
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26941e7f1a4cfab45b16cd897a536bb8
+      internalID: 2126626309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hjm-small_wooden_chest_iron-alpha_2
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 454
+        width: 162
+        height: 142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6bbb9ff2e94e5043a03b0dab5a13f2a
+      internalID: -1364130471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hjm-small_wooden_chest_iron-alpha_3
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 337
+        width: 138
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ab378f49d27d1447b31d2a7c6dbc76e
+      internalID: -75627744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hjm-small_wooden_chest_iron-alpha_4
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 337
+        width: 138
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5865147d42d84b746a97bae0d7fad687
+      internalID: -1724000858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hjm-small_wooden_chest_iron-alpha_5
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 185
+        width: 161
+        height: 142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ba74d40654aeeb418018a879cb81ae1
+      internalID: 1386666655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hjm-small_wooden_chest_iron-alpha_6
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 135
+        width: 100
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cbd77398a3d7ca46991179628e390b7
+      internalID: -1866762962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hjm-small_wooden_chest_iron-alpha_7
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 185
+        width: 162
+        height: 142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5e140301aed23f4994235b9f809f4bb
+      internalID: -157641288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      hjm-small_wooden_chest_iron-alpha_0: 973426173
+      hjm-small_wooden_chest_iron-alpha_1: 2126626309
+      hjm-small_wooden_chest_iron-alpha_10: -1792716616
+      hjm-small_wooden_chest_iron-alpha_11: -92547691
+      hjm-small_wooden_chest_iron-alpha_12: -1256794958
+      hjm-small_wooden_chest_iron-alpha_13: -272370413
+      hjm-small_wooden_chest_iron-alpha_14: 893282911
+      hjm-small_wooden_chest_iron-alpha_15: 2144437132
+      hjm-small_wooden_chest_iron-alpha_16: 1625823540
+      hjm-small_wooden_chest_iron-alpha_17: -1156022801
+      hjm-small_wooden_chest_iron-alpha_18: 1843156526
+      hjm-small_wooden_chest_iron-alpha_19: 803145177
+      hjm-small_wooden_chest_iron-alpha_2: -1364130471
+      hjm-small_wooden_chest_iron-alpha_20: -1399201498
+      hjm-small_wooden_chest_iron-alpha_21: -1042946273
+      hjm-small_wooden_chest_iron-alpha_22: 854921903
+      hjm-small_wooden_chest_iron-alpha_23: 1794714057
+      hjm-small_wooden_chest_iron-alpha_24: 1485683954
+      hjm-small_wooden_chest_iron-alpha_25: 1559139771
+      hjm-small_wooden_chest_iron-alpha_26: 998800543
+      hjm-small_wooden_chest_iron-alpha_27: 1309609076
+      hjm-small_wooden_chest_iron-alpha_28: 405528078
+      hjm-small_wooden_chest_iron-alpha_29: -1362244147
+      hjm-small_wooden_chest_iron-alpha_3: -75627744
+      hjm-small_wooden_chest_iron-alpha_30: -1767507954
+      hjm-small_wooden_chest_iron-alpha_31: 2104463039
+      hjm-small_wooden_chest_iron-alpha_32: -213857406
+      hjm-small_wooden_chest_iron-alpha_33: 1216815028
+      hjm-small_wooden_chest_iron-alpha_4: -1724000858
+      hjm-small_wooden_chest_iron-alpha_5: 1386666655
+      hjm-small_wooden_chest_iron-alpha_6: -1866762962
+      hjm-small_wooden_chest_iron-alpha_7: -157641288
+      hjm-small_wooden_chest_iron-alpha_8: 520158353
+      hjm-small_wooden_chest_iron-alpha_9: -901851566
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
