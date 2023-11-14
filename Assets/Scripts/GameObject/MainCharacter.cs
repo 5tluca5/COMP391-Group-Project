@@ -83,7 +83,8 @@ public class MainCharacter : MonoBehaviour {
             m_body2d.velocity = new Vector2(inputX * m_speed, inputY * m_speed);
 
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);
-
+        weapons[0].SetPositionZ(transform.position.y);
+        weapons[1].SetPositionZ(transform.position.y);
         // -- Handle Animations --
         //Wall Slide
         //Death

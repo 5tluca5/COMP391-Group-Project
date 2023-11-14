@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bullet
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -46,6 +48,9 @@ TagManager:
     locked: 0
   - name: Character
     uniqueID: 3203758385
+    locked: 0
+  - name: Weapon
+    uniqueID: 205686863
     locked: 0
   - name: Building
     uniqueID: 2467388113

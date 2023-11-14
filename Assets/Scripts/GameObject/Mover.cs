@@ -51,8 +51,8 @@ public class Mover : MonoBehaviour
         // Reduce push force every frame, based off recovery speed
         pushDirection = Vector3.Lerp(pushDirection, Vector3.zero, pushRecoverySpeed);
 
-        Debug.Log("moveDelta" + moveDelta);
-        Debug.Log("PushDir" + pushDirection);
+        //Debug.Log("moveDelta" + moveDelta);
+        //Debug.Log("PushDir" + pushDirection);
 
         transform.Translate(moveDelta * Time.deltaTime);
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);

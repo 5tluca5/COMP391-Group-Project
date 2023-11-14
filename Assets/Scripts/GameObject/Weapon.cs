@@ -24,6 +24,11 @@ public class Weapon : RotationObject
         transform.localPosition = new Vector3(posX, transform.localPosition.y);
     }
 
+    public void SetPositionZ(float posZ)
+    {
+        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, posZ);
+    }
+
     public void Fire()
     {
         var bullet = Instantiate(bulletPrefab).GetComponent<Bullet>();
