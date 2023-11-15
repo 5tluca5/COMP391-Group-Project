@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public MainCharacter player;
 
     Dictionary<AbilityType, Ability> abilities = new Dictionary<AbilityType, Ability>();
-    int currency;
+    int currency = 100;
 
     private void Start()
     {
@@ -100,5 +100,20 @@ public class GameManager : MonoBehaviour
     public float GetBulletDamage()
     {
         return GameConstant.Initial_Damage + abilities[AbilityType.Damage].GetCurrentEffect();
+    }
+
+    public bool IsMaxLevel(AbilityType type) 
+    {
+        return abilities[type].IsMaxLevel();
+    }
+
+    public MainCharacter GetPlayer() 
+    {
+        return player;
+    }
+
+    public int GetCurrency() 
+    {
+        return currency;
     }
 }

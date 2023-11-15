@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MainUIManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _mainHUD;
+    private PlayerStatsHUD _playerHUD;
     [SerializeField]
     private GameObject _upgradeUI;
     [SerializeField]
@@ -20,7 +20,8 @@ public class MainUIManager : MonoBehaviour
     public void OpenMainHUD() 
     {
         Debug.Log("click");
-        _mainHUD.SetActive(true);
+        _playerHUD.gameObject.SetActive(true);
+        _playerHUD.SetupView();
     }
 
     public void OpenUpgradeUI() 
@@ -30,7 +31,7 @@ public class MainUIManager : MonoBehaviour
 
     public void CloseMainHUD() 
     {
-        _mainHUD.SetActive(false);
+        _playerHUD.gameObject.SetActive(false);
     }
 
     public void CloseUpgradeUI() 
@@ -41,7 +42,17 @@ public class MainUIManager : MonoBehaviour
     public void OnClickBackButton() 
     {
         Time.timeScale = 1;
-        _mainHUD.SetActive(true);
+        _playerHUD.gameObject.SetActive(true);
         _upgradeUI.SetActive(false);
+    }
+
+    public void OpenPauseMenu() 
+    {
+    
+    }
+
+    public void ClosePauseMenu() 
+    {
+    
     }
 }
