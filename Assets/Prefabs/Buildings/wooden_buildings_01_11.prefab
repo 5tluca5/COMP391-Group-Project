@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7857746368123204189}
   - component: {fileID: 7580426162451760046}
   - component: {fileID: 2023693672588675305}
-  - component: {fileID: 3004884984904337106}
+  - component: {fileID: 6823821593191460491}
   m_Layer: 0
   m_Name: wooden_buildings_01_11
   m_TagString: Untagged
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1827579183
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -624430472, guid: 2a933bc969e3046cdb3c8c8de3fbbd94, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec686a253a844f3eaea015671955505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!68 &3004884984904337106
-EdgeCollider2D:
+--- !u!61 &6823821593191460491
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -130,15 +130,16 @@ EdgeCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.18124533, y: 0.972478}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 4.7799997, y: 3.34}
+    newSize: {x: 3.4899998, y: 2.36}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.6485872, y: 1.5055734}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: 0.39077386, y: 2.1813445}
-  - {x: -1.6314721, y: 1.1039755}
-  - {x: 0.14625236, y: 0.15145081}
-  - {x: 2.0421882, y: 1.1650994}
-  - {x: 0.4064063, y: 2.1532497}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0

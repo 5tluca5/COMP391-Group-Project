@@ -137,7 +137,6 @@ MonoBehaviour:
   m_speed: 4
   m_jumpForce: 7.5
   m_rollForce: 6
-  m_noBlood: 0
   m_slideDust: {fileID: 1038168246061390451, guid: 8b8c8cc6774fb074cb9139cc631b108e, type: 3}
   weapons:
   - {fileID: 5477411510442511683}
@@ -201,8 +200,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1091208911
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300002, guid: 35339ff5e62f67742a07e331fadbd508, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -274,7 +273,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.029853523, y: -0.28999996}
+  m_Offset: {x: 0.029853523, y: -0.11832246}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.4350327, y: 0.5}
@@ -285,7 +284,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32797325, y: 0.58712816}
+  m_Size: {x: 0.32797325, y: 0.93048316}
   m_EdgeRadius: 0
 --- !u!1 &5065322989317330887
 GameObject:

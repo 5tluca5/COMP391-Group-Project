@@ -69,6 +69,11 @@ public class Enemy : Mover
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if(collision.gameObject.CompareTag("DeathEdge"))
+        {
+            StartCoroutine(PerformDead());
+        }
+
         if (collision.gameObject.tag == "Bullet")
         {
             //    Vector2 enemyPosition = new Vector2(transform.position.x, transform.position.y);

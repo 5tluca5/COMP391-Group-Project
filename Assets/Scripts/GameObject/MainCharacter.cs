@@ -8,7 +8,6 @@ public class MainCharacter : MonoBehaviour {
     [SerializeField] float      m_speed = 4.0f;
     [SerializeField] float      m_jumpForce = 7.5f;
     [SerializeField] float      m_rollForce = 6.0f;
-    [SerializeField] bool       m_noBlood = false;
     [SerializeField] GameObject m_slideDust;
 
     public List<Weapon>         weapons = new List<Weapon>();
@@ -86,8 +85,6 @@ public class MainCharacter : MonoBehaviour {
             m_body2d.velocity = new Vector2(inputX * m_speed, inputY * m_speed);
 
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);
-        weapons[0].SetPositionZ(transform.position.y);
-        weapons[1].SetPositionZ(transform.position.y);
 
         // -- Handle Animations --
         //Death
