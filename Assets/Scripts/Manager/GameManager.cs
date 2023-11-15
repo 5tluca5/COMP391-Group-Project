@@ -135,4 +135,20 @@ public class GameManager : MonoBehaviour
     {
         return GameConstant.Initial_Damage + abilities[AbilityType.Damage].GetCurrentEffect();
     }
+
+    
+    public bool IsMaxLevel(AbilityType type) 
+    {
+        return abilities[type].IsMaxLevel();
+    }
+
+    public MainCharacter GetPlayer() 
+    {
+        return player;
+    }
+
+    public int GetCurrency() 
+    {
+        return currency;
+    }
 }
