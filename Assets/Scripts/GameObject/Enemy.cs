@@ -21,10 +21,12 @@ public class Enemy : Mover
         base.Start();
 
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+        hitbox = GetComponentInChildren<BoxCollider2D>();
+
         playerTransform = GameManager.Instance.player.transform;
         startingPosition = this.transform.position;
-        hitbox = GetComponentInChildren<BoxCollider2D>();
-        rb = GetComponent<Rigidbody2D>();
+        curHP = GameConstant.Zombie_HP;
     }
 
     private void FixedUpdate()
@@ -76,7 +78,20 @@ public class Enemy : Mover
             pushDirection = collision.relativeVelocity.normalized * collision.gameObject.GetComponent<Bullet>().speed;
             Debug.Log("Bullet force: " + pushDirection);
 
-            PerformDead();
+        }
+    }
+
+    void ReceiveDamage(float dmg)
+    {
+        curHP -= dmg;
+
+        if(curHP <= 0)
+        {
+            StartCoroutine(PerformDead());
+        }
+        else
+        {
+            anim.SetTrigger("Hit");
         }
     }
 
@@ -93,6 +108,6 @@ public class Enemy : Mover
 
         yield return new WaitForSeconds(1f);
 
-        GetComponent<SpriteRenderer>().DOFade(0, 0.2f).onComplete += () => { Destroy(this); };
+        GetComponent<SpriteRenderer>().DOFade(0, 0.2f).onComplete += () => { Destroy(gameObject); };
     }
 }
