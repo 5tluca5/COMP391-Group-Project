@@ -6,38 +6,58 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager Instance;
 
     private void Awake()
     {
-        if (GameManager.instance != null)
+        if (GameManager.Instance != null)
         {
             Destroy(gameObject);
             return;
         }
 
-        instance = this;
+        Instance = this;
         //SceneManager.sceneLoaded += LoadState;
         DontDestroyOnLoad(gameObject);
     }
 
-
     // Reference
     public MainCharacter player;
 
+    // Game start / over
+    bool isGameStarted = false;
+
+    // Upgrade
+    int currency = 0;
     Dictionary<AbilityType, Ability> abilities = new Dictionary<AbilityType, Ability>();
-    int currency;
 
     private void Start()
     {
-        InvokeRepeating("AutoSave", 5f, 5f);
+        
+    }
 
-        NewGame();
-        player.SetFireRate(GetFireRate());
+    public void StartGame()
+    {
+        if (isGameStarted) return;
+
+        isGameStarted = true;
+
+        SetupPlayer();
+
+        InvokeRepeating("AutoSave", 10f, 10f);
+    }
+
+    public bool IsGameStarted()
+    {
+        return isGameStarted;
     }
 
     public void NewGame()
     {
+        PlayerPrefs.DeleteAll();
+
+        currency = 0;
+
         abilities.Clear();
 
         abilities.Add(AbilityType.MaxHP, new AbilityHeath(0));
@@ -47,6 +67,8 @@ public class GameManager : MonoBehaviour
 
     public void LoadGame()
     {
+        currency = PlayerPrefs.GetInt(GameConstant.CURRENCY_KEY, 0);
+
         abilities.Clear();
 
         int hpLevel = PlayerPrefs.GetInt(string.Format(GameConstant.ABILITY_LEVEL_KEY, AbilityType.MaxHP.ToString()), 0);
@@ -56,8 +78,11 @@ public class GameManager : MonoBehaviour
         abilities.Add(AbilityType.MaxHP, new AbilityHeath(hpLevel));
         abilities.Add(AbilityType.FireRate, new AbilityFireRate(frLevel));
         abilities.Add(AbilityType.Damage, new AbilityDamage(dmgLevel));
+    }
 
-        currency = PlayerPrefs.GetInt(GameConstant.CURRENCY_KEY, 0);
+    public bool CanLoadGame()
+    {
+        return PlayerPrefs.HasKey(GameConstant.LAST_SAVE_TIME_KEY);
     }
 
     void AutoSave()
@@ -68,6 +93,13 @@ public class GameManager : MonoBehaviour
         }
 
         PlayerPrefs.SetInt(GameConstant.CURRENCY_KEY, currency);
+
+        PlayerPrefs.SetString(GameConstant.LAST_SAVE_TIME_KEY, DateTime.UtcNow.ToString());
+    }
+
+    public void SetupPlayer()
+    {
+        player.SetFireRate(GetFireRate());
     }
 
     public bool UpgradeAbility(AbilityType type)
@@ -83,6 +115,8 @@ public class GameManager : MonoBehaviour
         {
             currency -= cost;
         }
+
+        AutoSave();
 
         return true;
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Enemy : Mover
 {
@@ -20,7 +21,7 @@ public class Enemy : Mover
         base.Start();
 
         anim = GetComponent<Animator>();
-        playerTransform = GameManager.instance.player.transform;
+        playerTransform = GameManager.Instance.player.transform;
         startingPosition = this.transform.position;
         hitbox = GetComponentInChildren<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
@@ -40,6 +41,7 @@ public class Enemy : Mover
         Vector3 chasingDirection = (delta.normalized);
 
         anim.SetFloat("Speed", Mathf.Abs(Mathf.Max(Mathf.Abs(chasingDirection.x), Mathf.Abs(chasingDirection.y))));
+
         // Prevent infinite blocking
         //if (getBlockTimer > getBlockTime && blockingObject != "Player")
         //{
@@ -67,10 +69,10 @@ public class Enemy : Mover
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            Vector2 enemyPosition = new Vector2(transform.position.x, transform.position.y);
-            Vector2 bulletPosition = new Vector2(collision.transform.position.x, collision.transform.position.y);
+            //    Vector2 enemyPosition = new Vector2(transform.position.x, transform.position.y);
+            //    Vector2 bulletPosition = new Vector2(collision.transform.position.x, collision.transform.position.y);
 
-            pushDirection = (enemyPosition - bulletPosition).normalized * collision.gameObject.GetComponent<Bullet>().speed;
+            //    pushDirection = (enemyPosition - bulletPosition).normalized * collision.gameObject.GetComponent<Bullet>().speed;
             pushDirection = collision.relativeVelocity.normalized * collision.gameObject.GetComponent<Bullet>().speed;
             Debug.Log("Bullet force: " + pushDirection);
 
@@ -78,9 +80,9 @@ public class Enemy : Mover
         }
     }
 
-    void PerformDead()
+    IEnumerator PerformDead()
     {
-        if (isDead) return;
+        if (isDead) yield return null;
 
         isDead = true;
 
@@ -88,5 +90,9 @@ public class Enemy : Mover
         rb.simulated = false;
 
         anim.SetTrigger("Dead");
+
+        yield return new WaitForSeconds(1f);
+
+        GetComponent<SpriteRenderer>().DOFade(0, 0.2f).onComplete += () => { Destroy(this); };
     }
 }

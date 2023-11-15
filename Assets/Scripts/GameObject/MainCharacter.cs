@@ -25,7 +25,7 @@ public class MainCharacter : MonoBehaviour {
     private float               m_fireRate = 0.25f;
     private float               m_maxHP = 5f;
     private float               m_curHP = 5f;
-
+    
     // Use this for initialization
     void Start ()
     {
@@ -39,8 +39,10 @@ public class MainCharacter : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update ()
+    void LateUpdate ()
     {
+        if (!GameManager.Instance.IsGameStarted()) return;
+
         // Increase timer that controls attack combo
         m_timeSinceAttack += Time.deltaTime;
 
