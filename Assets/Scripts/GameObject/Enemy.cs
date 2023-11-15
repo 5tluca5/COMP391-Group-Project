@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Enemy : Mover
 {
@@ -20,10 +21,12 @@ public class Enemy : Mover
         base.Start();
 
         anim = GetComponent<Animator>();
-        playerTransform = GameManager.instance.player.transform;
-        startingPosition = this.transform.position;
-        hitbox = GetComponentInChildren<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
+        hitbox = GetComponentInChildren<BoxCollider2D>();
+
+        playerTransform = GameManager.Instance.player.transform;
+        startingPosition = this.transform.position;
+        curHP = GameConstant.Zombie_HP;
     }
 
     private void FixedUpdate()
@@ -40,6 +43,7 @@ public class Enemy : Mover
         Vector3 chasingDirection = (delta.normalized);
 
         anim.SetFloat("Speed", Mathf.Abs(Mathf.Max(Mathf.Abs(chasingDirection.x), Mathf.Abs(chasingDirection.y))));
+
         // Prevent infinite blocking
         //if (getBlockTimer > getBlockTime && blockingObject != "Player")
         //{
@@ -67,20 +71,33 @@ public class Enemy : Mover
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            Vector2 enemyPosition = new Vector2(transform.position.x, transform.position.y);
-            Vector2 bulletPosition = new Vector2(collision.transform.position.x, collision.transform.position.y);
+            //    Vector2 enemyPosition = new Vector2(transform.position.x, transform.position.y);
+            //    Vector2 bulletPosition = new Vector2(collision.transform.position.x, collision.transform.position.y);
 
-            pushDirection = (enemyPosition - bulletPosition).normalized * collision.gameObject.GetComponent<Bullet>().speed;
+            //    pushDirection = (enemyPosition - bulletPosition).normalized * collision.gameObject.GetComponent<Bullet>().speed;
             pushDirection = collision.relativeVelocity.normalized * collision.gameObject.GetComponent<Bullet>().speed;
             Debug.Log("Bullet force: " + pushDirection);
 
-            PerformDead();
         }
     }
 
-    void PerformDead()
+    void ReceiveDamage(float dmg)
     {
-        if (isDead) return;
+        curHP -= dmg;
+
+        if(curHP <= 0)
+        {
+            StartCoroutine(PerformDead());
+        }
+        else
+        {
+            anim.SetTrigger("Hit");
+        }
+    }
+
+    IEnumerator PerformDead()
+    {
+        if (isDead) yield return null;
 
         isDead = true;
 
@@ -88,5 +105,9 @@ public class Enemy : Mover
         rb.simulated = false;
 
         anim.SetTrigger("Dead");
+
+        yield return new WaitForSeconds(1f);
+
+        GetComponent<SpriteRenderer>().DOFade(0, 0.2f).onComplete += () => { Destroy(gameObject); };
     }
 }

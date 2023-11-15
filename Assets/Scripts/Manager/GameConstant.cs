@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameConstant
 {
     //PlayerPrefs Keys
+    public const string LAST_SAVE_TIME_KEY = "LAST_SAVE_TIME_KEY";
     public const string ABILITY_LEVEL_KEY = "ABILITY_{0}_LEVEL";
     public const string CURRENCY_KEY = "CURRENCY_KEY";
 
