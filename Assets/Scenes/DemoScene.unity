@@ -17338,7 +17338,7 @@ SpriteShapeRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_MaskInteraction: 0
   m_ShapeTexture: {fileID: 2800000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
   m_Sprites:
@@ -17761,7 +17761,7 @@ GameObject:
   - component: {fileID: 1264252247}
   m_Layer: 6
   m_Name: DeathEdge
-  m_TagString: Untagged
+  m_TagString: DeathEdge
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17816,12 +17816,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -14.3147545, y: 29.736647}
-  - {x: -53.000782, y: 10.724871}
-  - {x: -53.000782, y: 10.72487}
+  - {x: -13.916102, y: 34.12182}
+  - {x: -54.861156, y: 13.914085}
+  - {x: -59.777855, y: 11.123523}
   - {x: 8.920448, y: -24.95443}
-  - {x: 50.529675, y: -1.6252695}
-  - {x: -14.31475, y: 29.73665}
+  - {x: 54.914837, y: -0.29642963}
+  - {x: 51.858513, y: 1.1652931}
+  - {x: -13.916098, y: 34.520473}
   m_AdjacentStartPoint: {x: 6.1, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -18141,7 +18142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2647182974b391248871176e5fd8228b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainHUD: {fileID: 1103602366}
+  _playerHUD: {fileID: 0}
   _upgradeUI: {fileID: 2003337156}
   _backBtn: {fileID: 1743777911}
 --- !u!1001 &1289273107
