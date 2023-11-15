@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainUIManager : MonoBehaviour
 {
@@ -8,7 +9,13 @@ public class MainUIManager : MonoBehaviour
     private GameObject _mainHUD;
     [SerializeField]
     private GameObject _upgradeUI;
+    [SerializeField]
+    private Button _backBtn;
 
+    public void Start()
+    {
+        _backBtn.onClick.AddListener(OnClickBackButton);
+    }
 
     public void OpenMainHUD() 
     {
@@ -28,6 +35,13 @@ public class MainUIManager : MonoBehaviour
 
     public void CloseUpgradeUI() 
     {
+        _upgradeUI.SetActive(false);
+    }
+
+    public void OnClickBackButton() 
+    {
+        Time.timeScale = 1;
+        _mainHUD.SetActive(true);
         _upgradeUI.SetActive(false);
     }
 }
