@@ -12,7 +12,6 @@ public class MainCharacter : MonoBehaviour {
     [SerializeField] GameObject m_slideDust;
 
     public List<Weapon>         weapons = new List<Weapon>();
-    private int                 fireWeaponIndex;
 
     private Animator            m_animator;
     private Rigidbody2D         m_body2d;
@@ -23,7 +22,9 @@ public class MainCharacter : MonoBehaviour {
     private float               m_timeSinceAttack = 0.0f;
     private float               m_rollDuration = 8.0f / 14.0f;
     private float               m_rollCurrentTime;
-
+    private float               m_fireRate = 0.25f;
+    private float               m_maxHP = 5f;
+    private float               m_curHP = 5f;
 
     // Use this for initialization
     void Start ()
@@ -85,8 +86,8 @@ public class MainCharacter : MonoBehaviour {
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);
         weapons[0].SetPositionZ(transform.position.y);
         weapons[1].SetPositionZ(transform.position.y);
+
         // -- Handle Animations --
-        //Wall Slide
         //Death
         if (Input.GetKeyDown("e") && !m_rolling)
         {
@@ -99,7 +100,7 @@ public class MainCharacter : MonoBehaviour {
             m_animator.SetTrigger("Hurt");
 
         //Attack
-        else if(Input.GetMouseButton(0) && m_timeSinceAttack > 0.25f && !m_rolling)
+        else if(Input.GetMouseButton(0) && m_timeSinceAttack > m_fireRate && !m_rolling)
         {
             m_currentAttack++;
 
@@ -129,6 +130,36 @@ public class MainCharacter : MonoBehaviour {
                 runIdleIsPlayying = false;
         }
         m_animator.SetBool("RunIdlePlayying", runIdleIsPlayying);
+    }
+
+    public void SetFireRate(float fireRate)
+    {
+        m_fireRate = fireRate;
+    }
+
+    public void InitHP(float hp)
+    {
+        m_maxHP = hp;
+        m_curHP = hp;
+    }
+
+    public void SetCurrentHP(float hp)
+    {
+        m_curHP = hp;
+    }
+    public void SetMaxHP(float hp)
+    {
+        m_maxHP = hp;
+    }
+
+    public float GetCurrentHP()
+    {
+        return m_curHP;
+    }
+
+    public float GetMaxHP()
+    {
+        return m_maxHP;
     }
 
 }

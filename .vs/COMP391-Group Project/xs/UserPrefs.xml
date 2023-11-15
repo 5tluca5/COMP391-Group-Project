@@ -1,15 +1,23 @@
 ﻿<Properties StartupConfiguration="{F35F4167-4B50-14D1-463F-360EE1AC3CC4}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Enemy.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameObject/Enemy.cs">
     <Files>
       <File FileName="Assets/Scripts/Trees.cs" Line="12" Column="49" />
-      <File FileName="Assets/Scripts/Pages/StartPage.cs" />
+      <File FileName="Assets/Scripts/Pages/StartPage.cs" Line="1" Column="1" />
       <File FileName="Assets/Ethan the Hero/Script/PlayerAnimation.cs" />
       <File FileName="Assets/Ethan the Hero/Script/PlayerMovement/PlayerMovement.cs" />
       <File FileName="Assets/Scripts/TreeFenceManager.cs" />
-      <File FileName="Assets/Scripts/MainCharacter.cs" Line="4" Column="27" />
-      <File FileName="Assets/Scripts/Mover.cs" Line="85" Column="12" />
-      <File FileName="Assets/Scripts/Manager/GameManager.cs" Line="24" Column="25" />
-      <File FileName="Assets/Scripts/Enemy.cs" Line="5" Column="27" />
+      <File FileName="Assets/Scripts/MainCharacter.cs" Line="76" Column="35" />
+      <File FileName="Assets/Scripts/Mover.cs" Line="45" Column="1" />
+      <File FileName="Assets/Scripts/Manager/GameManager.cs" Line="87" Column="29" />
+      <File FileName="Assets/Scripts/GameObject/MainCharacter.cs" Line="134" Column="28" />
+      <File FileName="Assets/Scripts/GameObject/Weapon.cs" Line="29" Column="72" />
+      <File FileName="Assets/Scripts/GameObject/Buildings.cs" Line="19" Column="1" />
+      <File FileName="Assets/Scripts/GameObject/Mover.cs" Line="55" Column="33" />
+      <File FileName="Assets/Scripts/GameObject/Enemy.cs" Line="73" Column="6" />
+      <File FileName="Assets/Scripts/GameObject/Bullet.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Object/Ability.cs" Line="32" Column="17" />
+      <File FileName="Assets/Scripts/Manager/GameConstant.cs" Line="13" Column="40" />
+      <File FileName="Assets/Scripts/GameObject/RotationObject.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -25,8 +33,12 @@
                 <Node name="Demo" expanded="True" />
               </Node>
               <Node name="Scripts" expanded="True">
+                <Node name="GameObject" expanded="True">
+                  <Node name="Trees.cs" selected="True" />
+                </Node>
                 <Node name="Manager" expanded="True" />
-                <Node name="Enemy.cs" selected="True" />
+                <Node name="Object" expanded="True" />
+                <Node name="Pages" expanded="True" />
               </Node>
             </Node>
           </Node>

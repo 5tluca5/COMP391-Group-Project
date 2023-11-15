@@ -12,6 +12,9 @@ public class Enemy : Mover
     private BoxCollider2D hitbox;
     private Rigidbody2D rb;
 
+    private float curHP;
+    private bool isDead = false;
+
     protected override void Start()
     {
         base.Start();
@@ -25,6 +28,8 @@ public class Enemy : Mover
 
     private void FixedUpdate()
     {
+        if (isDead) return;
+
         ChasePlayer();
     }
 
@@ -69,6 +74,19 @@ public class Enemy : Mover
             pushDirection = collision.relativeVelocity.normalized * collision.gameObject.GetComponent<Bullet>().speed;
             Debug.Log("Bullet force: " + pushDirection);
 
+            PerformDead();
         }
+    }
+
+    void PerformDead()
+    {
+        if (isDead) return;
+
+        isDead = true;
+
+        rb.isKinematic = true;
+        rb.simulated = false;
+
+        anim.SetTrigger("Dead");
     }
 }
