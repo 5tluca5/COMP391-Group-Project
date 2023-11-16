@@ -20,6 +20,10 @@ public class GameManager : MonoBehaviour
         Instance = this;
         //SceneManager.sceneLoaded += LoadState;
         DontDestroyOnLoad(gameObject);
+
+        abilities.Add(AbilityType.MaxHP, new AbilityHeath(0));
+        abilities.Add(AbilityType.FireRate, new AbilityFireRate(0));
+        abilities.Add(AbilityType.Damage, new AbilityDamage(0));
     }
 
     // Reference
@@ -57,7 +61,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
 
-        currency.Value = 100;
+        currency.Value = 10000;
 
         abilities.Clear();
 
@@ -118,6 +122,7 @@ public class GameManager : MonoBehaviour
         }
 
         AutoSave();
+        SetupPlayer();
 
         return true;
     }
@@ -160,6 +165,7 @@ public class GameManager : MonoBehaviour
 
     public ReactiveProperty<int> SubscribeAbilityLevel(AbilityType type)
     {
+
         return abilities[type].SubscribeLevel();
     }
 }

@@ -103,6 +103,8 @@ MonoBehaviour:
   owener: {fileID: 0}
   firePos: {fileID: 1090367927375843114}
   bulletPrefab: {fileID: 377561001801406629, guid: 155e81b93ca9b12418bc6cb3fa5ab738, type: 3}
+  basicGunSprite: {fileID: 473998301, guid: afc3c7ee1d6e68b4d8257579cebad4a7, type: 3}
+  ultimateGunSprite: {fileID: 871842876, guid: afc3c7ee1d6e68b4d8257579cebad4a7, type: 3}
 --- !u!1 &8771360499871174730
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 public class Weapon : RotationObject
 {
     public Transform owener;
     public Transform firePos;
     public GameObject bulletPrefab;
+
+    public Sprite basicGunSprite;
+    public Sprite ultimateGunSprite;
+
+    bool isUltimate = false;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -17,6 +23,20 @@ public class Weapon : RotationObject
         target = owener;
 
         base.Start();
+
+        GameManager.Instance.SubscribeAbilityLevel(AbilityType.FireRate).Subscribe(x =>
+        {
+            if(GameManager.Instance.GetAbility(AbilityType.FireRate).IsMaxLevel())
+            {
+                isUltimate = true;
+                GetComponent<SpriteRenderer>().sprite = ultimateGunSprite;
+            }
+            else
+            {
+                isUltimate = false;
+                GetComponent<SpriteRenderer>().sprite = basicGunSprite;
+            }
+        }).AddTo(this);
     }
 
     public void SetPositionX(float posX)
@@ -35,5 +55,10 @@ public class Weapon : RotationObject
         bullet.transform.position = firePos.position;
         bullet.SetRotation(angle, isFlipped);
         bullet.Shot();
+    }
+
+    public bool IsUltimate()
+    {
+        return isUltimate;
     }
 }

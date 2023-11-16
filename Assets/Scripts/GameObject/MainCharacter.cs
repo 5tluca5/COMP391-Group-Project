@@ -69,19 +69,19 @@ public class MainCharacter : MonoBehaviour {
         if (inputX > 0)
         {
             GetComponent<SpriteRenderer>().flipX = false;
-            weapons[0].SetPositionX(0.38f);
-            weapons[1].SetPositionX(-0.28f);
+            weapons[0].SetPositionX(weapons[0].IsUltimate() ? 0.5f : 0.38f);
+            weapons[1].SetPositionX(weapons[1].IsUltimate() ? -0.4f : -0.28f);
         }
             
         else if (inputX < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
-            weapons[0].SetPositionX(0.28f);
-            weapons[1].SetPositionX(-0.38f);
+            weapons[0].SetPositionX(weapons[0].IsUltimate() ? 0.4f : 0.28f);
+            weapons[1].SetPositionX(weapons[1].IsUltimate() ? -0.5f : -0.38f);
         }
 
         // Move
-        if (!m_rolling )
+        if (!m_rolling)
             m_body2d.velocity = new Vector2(inputX * m_speed, inputY * m_speed);
 
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);

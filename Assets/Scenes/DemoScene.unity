@@ -5923,7 +5923,7 @@ Canvas:
   m_GameObject: {fileID: 743914727}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 1790251380}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
@@ -22680,6 +22680,10 @@ PrefabInstance:
       value: -192369297
       objectReference: {fileID: 0}
     - target: {fileID: 2885835995358930915, guid: 07e3ba6a16b0d4c41a8fc37810429df6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 473998301, guid: afc3c7ee1d6e68b4d8257579cebad4a7, type: 3}
+    - target: {fileID: 2885835995358930915, guid: 07e3ba6a16b0d4c41a8fc37810429df6, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
@@ -22747,6 +22751,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -1091208911
       objectReference: {fileID: 0}
+    - target: {fileID: 6380398366914562993, guid: 07e3ba6a16b0d4c41a8fc37810429df6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 473998301, guid: afc3c7ee1d6e68b4d8257579cebad4a7, type: 3}
     - target: {fileID: 6380398366914562993, guid: 07e3ba6a16b0d4c41a8fc37810429df6, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -23032,6 +23040,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1790251381}
+  - {fileID: 1654759864}
   - {fileID: 1693904577}
   - {fileID: 2811929285317152379}
   - {fileID: 1566842082}
@@ -23040,5 +23049,4 @@ SceneRoots:
   - {fileID: 743914732}
   - {fileID: 1015472559}
   - {fileID: 1610867356}
-  - {fileID: 1654759864}
   - {fileID: 267853463}
