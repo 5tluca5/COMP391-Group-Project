@@ -6169,7 +6169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!225 &743914728
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -18106,6 +18106,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5382819168193686045, guid: 301154ce1e34e074ebdddc4db64f96a5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23584,11 +23588,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2885835995358930915, guid: 07e3ba6a16b0d4c41a8fc37810429df6, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2885835995358930915, guid: 07e3ba6a16b0d4c41a8fc37810429df6, type: 3}
       propertyPath: m_SortingLayerID
-      value: 205686863
+      value: -1827579183
       objectReference: {fileID: 0}
     - target: {fileID: 2885835995358930915, guid: 07e3ba6a16b0d4c41a8fc37810429df6, type: 3}
       propertyPath: m_SpriteSortPoint
@@ -23598,6 +23602,10 @@ PrefabInstance:
       propertyPath: m_RenderingLayerMask
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 2885835995358930915, guid: 07e3ba6a16b0d4c41a8fc37810429df6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 3463952824963897431, guid: 07e3ba6a16b0d4c41a8fc37810429df6, type: 3}
       propertyPath: m_LightOrder
       value: 0
@@ -23626,17 +23634,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 3585834894501918373, guid: 07e3ba6a16b0d4c41a8fc37810429df6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5544451355319170818, guid: 07e3ba6a16b0d4c41a8fc37810429df6, type: 3}
       propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5544451355319170818, guid: 07e3ba6a16b0d4c41a8fc37810429df6, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5544451355319170818, guid: 07e3ba6a16b0d4c41a8fc37810429df6, type: 3}
       propertyPath: m_SortingLayerID
-      value: -1091208911
+      value: -1827579183
       objectReference: {fileID: 0}
     - target: {fileID: 6380398366914562993, guid: 07e3ba6a16b0d4c41a8fc37810429df6, type: 3}
       propertyPath: m_Sprite
@@ -23644,12 +23656,16 @@ PrefabInstance:
       objectReference: {fileID: 473998301, guid: afc3c7ee1d6e68b4d8257579cebad4a7, type: 3}
     - target: {fileID: 6380398366914562993, guid: 07e3ba6a16b0d4c41a8fc37810429df6, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6380398366914562993, guid: 07e3ba6a16b0d4c41a8fc37810429df6, type: 3}
       propertyPath: m_SortingLayerID
-      value: 205686863
+      value: -1827579183
       objectReference: {fileID: 0}
+    - target: {fileID: 6380398366914562993, guid: 07e3ba6a16b0d4c41a8fc37810429df6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     m_RemovedComponents:
     - {fileID: 3457549773273167727, guid: 07e3ba6a16b0d4c41a8fc37810429df6, type: 3}
     m_RemovedGameObjects: []

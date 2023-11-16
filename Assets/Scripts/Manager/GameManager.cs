@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         player.Init();
         SetupPlayer();
 
-        enemyManager.GenerateZombies();
+        enemyManager.SetZombieSpawning(true);
     }
 
     public void StartGame()

@@ -45,6 +45,7 @@ public class StartPage : MonoBehaviour
     void StartGame()
     {
         transiting = true;
+        GameManager.Instance.InitGame();
 
         AudioManager.Instance.StopMusic();
         UICanvasGroup.DOFade(0, 1f).onComplete += () => {

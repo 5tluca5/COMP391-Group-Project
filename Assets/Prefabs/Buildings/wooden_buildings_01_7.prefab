@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1718623933294179927}
   - component: {fileID: 278529016972946365}
   - component: {fileID: 141257958557478604}
+  - component: {fileID: 6376457665199325173}
   m_Layer: 0
   m_Name: wooden_buildings_01_7
   m_TagString: Untagged
@@ -115,7 +116,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 328
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -132,7 +133,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.017842531, y: 1.0351903}
+  m_Offset: {x: -0.017842531, y: 1.52}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -145,6 +146,50 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.735219, y: 1.8086891}
   m_EdgeRadius: 0
+--- !u!68 &6376457665199325173
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312685855537889392}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -2.077053, y: 1.3169823}
+  - {x: 0.48713827, y: -0.05554016}
+  - {x: 2.4879234, y: 1.0009103}
+  - {x: -0.20582053, y: 2.3386304}
+  - {x: -2.0405116, y: 1.3303077}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1001 &6814151391955686223
 PrefabInstance:
   m_ObjectHideFlags: 0

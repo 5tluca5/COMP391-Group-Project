@@ -12,19 +12,42 @@ public class EnemyManager : MonoBehaviour
     public int numPointsToGenerate = 20;
     public float spawnInterval = 0.2f;
 
+    bool enableSpawning = false;
+    float spawnTimer = 0;
     List<Enemy> enemies = new List<Enemy>();
+
     private void Start()
     {
-        
+        InvokeRepeating("RemoveDeadZombies", 0.5f, 0.5f);
+    }
+
+    public void SetZombieSpawning(bool isEnable)
+    {
+        enableSpawning = isEnable;
+        spawnTimer = 0;
+    }
+
+    private void Update()
+    {
+        if (!enableSpawning) return;
+
+        spawnTimer += Time.deltaTime;
+
+        if(spawnTimer >= spawnInterval)
+        {
+            GenerateZombies();
+            spawnTimer = 0;
+        }
     }
 
     public void GenerateZombies()
     {
-        for (int i = 0; i < numPointsToGenerate; i++)
+        if(enemies.Count < numPointsToGenerate)
         {
             var randomPoint = GetRandomPointInSpriteShape(spriteRenderer);
 
-            Instantiate(enemyPrefab, randomPoint, Quaternion.identity);
+            var enemy = Instantiate(enemyPrefab, randomPoint, Quaternion.identity).GetComponent<Enemy>();
+            enemies.Add(enemy);
         }
     }
 
@@ -80,5 +103,21 @@ public class EnemyManager : MonoBehaviour
     {
         enemies.ForEach(x => Destroy(x.gameObject));
         enemies.Clear();
+    }
+
+    private void RemoveDeadZombies()
+    {
+        if(enemies == null || enemies.Count == 0) return;
+
+        enemies.Where(x => x.CanDestroy()).ToList().ForEach(x =>
+        {
+            Destroy(x.gameObject);
+            enemies.Remove(x);
+        });
+        //foreach (var e in enemies.Where(x => x.CanDestroy()))
+        //{
+        //    enemies.Remove(e);
+        //    Destroy(e.gameObject);
+        //}
     }
 }
