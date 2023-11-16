@@ -24,9 +24,14 @@ public class Weapon : RotationObject
 
         base.Start();
 
+    }
+
+    public void Init()
+    {
+
         GameManager.Instance.SubscribeAbilityLevel(AbilityType.FireRate).Subscribe(x =>
         {
-            if(GameManager.Instance.GetAbility(AbilityType.FireRate).IsMaxLevel())
+            if (GameManager.Instance.GetAbility(AbilityType.FireRate).IsMaxLevel())
             {
                 isUltimate = true;
                 GetComponent<SpriteRenderer>().sprite = ultimateGunSprite;

@@ -15967,7 +15967,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1827579183
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bda46a8343fbf4c57aa9af548bac73a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -20436,6 +20436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 9043920545932798880}
+  enemyManager: {fileID: 267853464}
 --- !u!4 &1654759864
 Transform:
   m_ObjectHideFlags: 0
@@ -22637,7 +22638,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1827579183
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9350e611c207f4122ac1497bac5a4dcc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -23429,7 +23430,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1790251381}
-  - {fileID: 1654759864}
   - {fileID: 1693904577}
   - {fileID: 2811929285317152379}
   - {fileID: 1566842082}
@@ -23438,4 +23438,5 @@ SceneRoots:
   - {fileID: 743914732}
   - {fileID: 1015472559}
   - {fileID: 1610867356}
+  - {fileID: 1654759864}
   - {fileID: 267853463}
