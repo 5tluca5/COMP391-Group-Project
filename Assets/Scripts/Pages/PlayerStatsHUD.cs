@@ -20,8 +20,8 @@ public class PlayerStatsHUD : MonoBehaviour
     private Sprite[] _heartSprites;
 
 
-    private float _playerCurrentHealth;
-    private float _playerMaxHealth;
+    private int _playerCurrentHealth;
+    private int _playerMaxHealth;
     private int _currency;
     private MainCharacter _player;
 
@@ -40,13 +40,14 @@ public class PlayerStatsHUD : MonoBehaviour
     {
         _gameManager.SubscribeAbilityLevel(AbilityType.MaxHP).Subscribe(x =>
         {
-            _playerMaxHealth = GameConstant.Initial_HP + _gameManager.GetAbility(AbilityType.MaxHP).GetCurrentEffect();
-            DisplayHearts();
-            
+            _playerMaxHealth = (int)(GameConstant.Initial_HP + _gameManager.GetAbility(AbilityType.MaxHP).GetCurrentEffect());
+            //OnPlayerGetHit();
         }).AddTo(this);
-
+        _player.SubscribeCurrentHP().Subscribe( x => {
+            _playerCurrentHealth = x;
+        }).AddTo(this);
         //_playerMaxHealth = _player.GetMaxHP();
-        _playerCurrentHealth = _player.GetCurrentHP();
+        //_playerCurrentHealth = _player.GetCurrentHP();
 
         _gameManager.SubscribeCurrency().Subscribe(x =>
         {
@@ -63,13 +64,18 @@ public class PlayerStatsHUD : MonoBehaviour
 
     private void DisplayHearts() 
     {
-        // round up if max health is .5
-        int roundedUp = (int)Math.Ceiling(_playerMaxHealth);
-
         //To display max hearts,
-        for (int i = 0; i < roundedUp; i++) 
+        for (int i = 0; i < _playerMaxHealth; i++) 
         {
             _hearts[i].gameObject.SetActive(true);
+            _hearts[i].sprite = _heartSprites[0];
+        }
+
+        Debug.Log("Current Health: " + _playerCurrentHealth);
+        for (int i = 1; i <= _playerCurrentHealth; i++)
+        {
+            Debug.Log("After Setup");
+            _hearts[i-1].sprite = _heartSprites[2];
         }
     }
 
@@ -78,11 +84,12 @@ public class PlayerStatsHUD : MonoBehaviour
         _currencyTxt.text = "x " + _currency.ToString();
     }
 
-    public void OnPlayerHealthUpgrade() 
+    public void OnPlayerGetHit() 
     {
-
-        _playerMaxHealth = _player.GetMaxHP();
-        DisplayHearts();
+        _player.SubscribeCurrentHP().Subscribe(x =>
+        {
+            _playerCurrentHealth = x;
+            DisplayHearts();
+        }).AddTo(this);
     }
-
 }

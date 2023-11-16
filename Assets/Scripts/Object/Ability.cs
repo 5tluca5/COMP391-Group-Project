@@ -52,7 +52,7 @@ public abstract class Ability
 
 public class AbilityHeath : Ability
 {
-    readonly float effectPerLevel = 0.5f;
+    readonly int effectPerLevel = 1;
 
     public AbilityHeath(int level)
     {
