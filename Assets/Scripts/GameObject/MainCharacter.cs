@@ -24,7 +24,7 @@ public class MainCharacter : MonoBehaviour {
     private float                 m_rollCurrentTime;
     private float                 m_fireRate = 0.25f;
     private ReactiveProperty<int> m_maxHP = new ReactiveProperty<int>(5);
-    private ReactiveProperty<int> m_curHP = new ReactiveProperty<int>(3);
+    private ReactiveProperty<int> m_curHP = new ReactiveProperty<int>(5);
     
     // Use this for initialization
     void Start ()
@@ -36,6 +36,11 @@ public class MainCharacter : MonoBehaviour {
         {
             weapons = GetComponentsInChildren<Weapon>().ToList();
         }
+    }
+
+    public void Init()
+    {
+        weapons.ForEach(x => x.Init());
     }
 
     // Update is called once per frame
@@ -70,15 +75,15 @@ public class MainCharacter : MonoBehaviour {
         if (inputX > 0)
         {
             GetComponent<SpriteRenderer>().flipX = false;
-            weapons[0].SetPositionX(0.38f);
-            weapons[1].SetPositionX(-0.28f);
+            weapons[0].SetPositionX(weapons[0].IsUltimate() ? 0.5f : 0.38f);
+            weapons[1].SetPositionX(weapons[1].IsUltimate() ? -0.4f : -0.28f);
         }
             
         else if (inputX < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
-            weapons[0].SetPositionX(0.28f);
-            weapons[1].SetPositionX(-0.38f);
+            weapons[0].SetPositionX(weapons[0].IsUltimate() ? 0.4f : 0.28f);
+            weapons[1].SetPositionX(weapons[1].IsUltimate() ? -0.5f : -0.38f);
         }
 
         // Move

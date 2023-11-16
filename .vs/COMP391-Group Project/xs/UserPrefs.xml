@@ -1,22 +1,24 @@
 ﻿<Properties StartupConfiguration="{F35F4167-4B50-14D1-463F-360EE1AC3CC4}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Pages/PlayerStatsHUD.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Manager/EnemyManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Pages/StartPage.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Pages/StartPage.cs" Line="46" Column="35" />
       <File FileName="Assets/Ethan the Hero/Script/PlayerAnimation.cs" />
       <File FileName="Assets/Ethan the Hero/Script/PlayerMovement/PlayerMovement.cs" />
-      <File FileName="Assets/Scripts/Manager/GameManager.cs" Line="151" Column="51" />
-      <File FileName="Assets/Scripts/GameObject/MainCharacter.cs" />
-      <File FileName="Assets/Scripts/GameObject/Weapon.cs" />
+      <File FileName="Assets/Scripts/Manager/GameManager.cs" Line="28" Column="19" />
+      <File FileName="Assets/Scripts/GameObject/MainCharacter.cs" Line="159" Column="37" />
+      <File FileName="Assets/Scripts/GameObject/Weapon.cs" Line="29" Column="21" />
       <File FileName="Assets/Scripts/GameObject/Buildings.cs" />
       <File FileName="Assets/Scripts/GameObject/Mover.cs" />
       <File FileName="Assets/Scripts/GameObject/Enemy.cs" />
       <File FileName="Assets/Scripts/GameObject/Bullet.cs" />
-      <File FileName="Assets/Scripts/Object/Ability.cs" />
-      <File FileName="Assets/Scripts/Manager/GameConstant.cs" />
+      <File FileName="Assets/Scripts/Object/Ability.cs" Line="119" Column="6" />
+      <File FileName="Assets/Scripts/Manager/GameConstant.cs" Line="14" Column="40" />
       <File FileName="Assets/Scripts/GameObject/RotationObject.cs" />
       <File FileName="Assets/Scripts/GameObject/Trees.cs" />
       <File FileName="Assets/Scripts/GameObject/UpgradeStatue.cs" />
-      <File FileName="Assets/Scripts/Pages/PlayerStatsHUD.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Pages/PlayerStatsHUD.cs" Line="43" Column="64" />
+      <File FileName="Assets/Scripts/Manager/MainUIManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Manager/EnemyManager.cs" Line="15" Column="40" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -24,10 +26,12 @@
           <Node name="COMP391-Group Project" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Manager" expanded="True" />
-                <Node name="Pages" expanded="True">
-                  <Node name="PlayerStatsHUD.cs" selected="True" />
+                <Node name="GameObject" expanded="True" />
+                <Node name="Manager" expanded="True">
+                  <Node name="EnemyManager.cs" selected="True" />
                 </Node>
+                <Node name="Object" expanded="True" />
+                <Node name="Pages" expanded="True" />
               </Node>
             </Node>
           </Node>

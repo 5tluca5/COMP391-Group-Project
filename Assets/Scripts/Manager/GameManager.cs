@@ -20,10 +20,12 @@ public class GameManager : MonoBehaviour
         Instance = this;
         //SceneManager.sceneLoaded += LoadState;
         DontDestroyOnLoad(gameObject);
+
     }
 
     // Reference
     public MainCharacter player;
+    public EnemyManager enemyManager;
 
     // Game start / over
     bool isGameStarted = false;
@@ -37,13 +39,19 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void InitGame()
+    {
+        player.Init();
+        SetupPlayer();
+
+        enemyManager.GenerateZombies();
+    }
+
     public void StartGame()
     {
         if (isGameStarted) return;
 
         isGameStarted = true;
-
-        SetupPlayer();
 
         InvokeRepeating("AutoSave", 10f, 10f);
     }
@@ -118,6 +126,7 @@ public class GameManager : MonoBehaviour
         }
 
         AutoSave();
+        SetupPlayer();
 
         return true;
     }

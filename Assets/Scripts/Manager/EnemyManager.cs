@@ -5,23 +5,20 @@ using UnityEngine.U2D;
 
 public class EnemyManager : MonoBehaviour
 {
-    public EdgeCollider2D edgeCollider; // EdgeCollider2D組件
-    public SpriteShapeRenderer spriteRenderer; // EdgeCollider2D組件
-    public GameObject enemyPrefab; // 點的預置物
-    public int numPointsToGenerate = 20; // 要生成的點的數量
+    public EdgeCollider2D edgeCollider;
+    public SpriteShapeRenderer spriteRenderer; 
+    public GameObject enemyPrefab; 
+    public int numPointsToGenerate = 20; 
 
     private void Start()
     {
-        GeneratePointsWithinCollider();
+
     }
 
-    private void GeneratePointsWithinCollider()
+    public void GenerateZombies()
     {
-        Vector2[] colliderPoints = edgeCollider.points; // 獲取邊界範圍的點
-
         for (int i = 0; i < numPointsToGenerate; i++)
         {
-            //Vector2 randomPoint = GetRandomPointWithinCollider(colliderPoints);
             var randomPoint = GetRandomPointInSpriteShape(spriteRenderer);
 
             Instantiate(enemyPrefab, randomPoint, Quaternion.identity);
@@ -35,7 +32,7 @@ public class EnemyManager : MonoBehaviour
         float minY = float.MaxValue;
         float maxY = float.MinValue;
 
-        // 找到邊界範圍的最小和最大值
+        // 嚙踝蕭嚙踝蕭嚙褕範嚙踩的最小嚙瞎嚙諒大嚙踝蕭
         foreach (Vector2 point in colliderPoints)
         {
             if (point.x < minX)
@@ -48,7 +45,7 @@ public class EnemyManager : MonoBehaviour
                 maxY = point.y;
         }
 
-        // 在範圍內生成隨機點
+        // 嚙箭嚙範嚙踩內生佗蕭嚙瘡嚙踝蕭嚙瘢
         float randomX = Random.Range(minX, maxX);
         float randomY = Random.Range(minY, maxY);
 

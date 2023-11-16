@@ -14463,7 +14463,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1827579183
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bda46a8343fbf4c57aa9af548bac73a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -17289,6 +17289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 9043920545932798880}
+  enemyManager: {fileID: 267853464}
 --- !u!4 &1654759864
 Transform:
   m_ObjectHideFlags: 0
@@ -18663,7 +18664,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1827579183
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9350e611c207f4122ac1497bac5a4dcc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -19125,6 +19126,10 @@ PrefabInstance:
       value: -192369297
       objectReference: {fileID: 0}
     - target: {fileID: 2885835995358930915, guid: 07e3ba6a16b0d4c41a8fc37810429df6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 473998301, guid: afc3c7ee1d6e68b4d8257579cebad4a7, type: 3}
+    - target: {fileID: 2885835995358930915, guid: 07e3ba6a16b0d4c41a8fc37810429df6, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
@@ -19192,6 +19197,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -1091208911
       objectReference: {fileID: 0}
+    - target: {fileID: 6380398366914562993, guid: 07e3ba6a16b0d4c41a8fc37810429df6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 473998301, guid: afc3c7ee1d6e68b4d8257579cebad4a7, type: 3}
     - target: {fileID: 6380398366914562993, guid: 07e3ba6a16b0d4c41a8fc37810429df6, type: 3}
       propertyPath: m_SortingLayer
       value: 3
