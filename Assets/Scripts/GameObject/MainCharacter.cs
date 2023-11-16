@@ -2,28 +2,29 @@
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
+using UniRx;
 
 public class MainCharacter : MonoBehaviour {
 
-    [SerializeField] float      m_speed = 4.0f;
-    [SerializeField] float      m_jumpForce = 7.5f;
-    [SerializeField] float      m_rollForce = 6.0f;
-    [SerializeField] GameObject m_slideDust;
+    [SerializeField] float        m_speed = 4.0f;
+    [SerializeField] float        m_jumpForce = 7.5f;
+    [SerializeField] float        m_rollForce = 6.0f;
+    [SerializeField] GameObject   m_slideDust;
 
-    public List<Weapon>         weapons = new List<Weapon>();
+    public List<Weapon>           weapons = new List<Weapon>();
 
-    private Animator            m_animator;
-    private Rigidbody2D         m_body2d;
-    private bool                m_grounded = false;
-    private bool                m_rolling = false;
-    private bool                runIdleIsPlayying = false;
-    private int                 m_currentAttack = 0;
-    private float               m_timeSinceAttack = 0.0f;
-    private float               m_rollDuration = 8.0f / 14.0f;
-    private float               m_rollCurrentTime;
-    private float               m_fireRate = 0.25f;
-    private float               m_maxHP = 5f;
-    private float               m_curHP = 5f;
+    private Animator              m_animator;
+    private Rigidbody2D           m_body2d;
+    private bool                  m_grounded = false;
+    private bool                  m_rolling = false;
+    private bool                  runIdleIsPlayying = false;
+    private int                   m_currentAttack = 0;
+    private float                 m_timeSinceAttack = 0.0f;
+    private float                 m_rollDuration = 8.0f / 14.0f;
+    private float                 m_rollCurrentTime;
+    private float                 m_fireRate = 0.25f;
+    private ReactiveProperty<int> m_maxHP = new ReactiveProperty<int>(5);
+    private ReactiveProperty<int> m_curHP = new ReactiveProperty<int>(3);
     
     // Use this for initialization
     void Start ()
@@ -69,19 +70,19 @@ public class MainCharacter : MonoBehaviour {
         if (inputX > 0)
         {
             GetComponent<SpriteRenderer>().flipX = false;
-            weapons[0].SetPositionX(weapons[0].IsUltimate() ? 0.5f : 0.38f);
-            weapons[1].SetPositionX(weapons[1].IsUltimate() ? -0.4f : -0.28f);
+            weapons[0].SetPositionX(0.38f);
+            weapons[1].SetPositionX(-0.28f);
         }
             
         else if (inputX < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
-            weapons[0].SetPositionX(weapons[0].IsUltimate() ? 0.4f : 0.28f);
-            weapons[1].SetPositionX(weapons[1].IsUltimate() ? -0.5f : -0.38f);
+            weapons[0].SetPositionX(0.28f);
+            weapons[1].SetPositionX(-0.38f);
         }
 
         // Move
-        if (!m_rolling)
+        if (!m_rolling )
             m_body2d.velocity = new Vector2(inputX * m_speed, inputY * m_speed);
 
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);
@@ -136,29 +137,26 @@ public class MainCharacter : MonoBehaviour {
         m_fireRate = fireRate;
     }
 
-    public void InitHP(float hp)
-    {
-        m_maxHP = hp;
-        m_curHP = hp;
-    }
+    //public void InitHP(float hp)
+    //{
+    //    m_maxHP = hp;
+    //    m_curHP = hp;
+    //}
 
-    public void SetCurrentHP(float hp)
-    {
-        m_curHP = hp;
-    }
-    public void SetMaxHP(float hp)
-    {
-        m_maxHP = hp;
-    }
-
-    public float GetCurrentHP()
-    {
-        return m_curHP;
-    }
-
-    public float GetMaxHP()
+    //public void SetCurrentHP(float hp)
+    //{
+    //    m_curHP = hp;
+    //}
+    //public void SetMaxHP(float hp)
+    //{
+    //    m_maxHP = hp;
+    //}
+    public ReactiveProperty<int> SubscribeMaxHP()
     {
         return m_maxHP;
     }
-
+    public ReactiveProperty<int> SubscribeCurrentHP()
+    {
+        return m_curHP;
+    }
 }
