@@ -41,10 +41,10 @@ public class PlayerStatsHUD : MonoBehaviour
         _gameManager.SubscribeAbilityLevel(AbilityType.MaxHP).Subscribe(x =>
         {
             _playerMaxHealth = (int)(GameConstant.Initial_HP + _gameManager.GetAbility(AbilityType.MaxHP).GetCurrentEffect());
-            //OnPlayerGetHit();
         }).AddTo(this);
         _player.SubscribeCurrentHP().Subscribe( x => {
             _playerCurrentHealth = x;
+            DisplayHearts();
         }).AddTo(this);
         //_playerMaxHealth = _player.GetMaxHP();
         //_playerCurrentHealth = _player.GetCurrentHP();
@@ -71,12 +71,12 @@ public class PlayerStatsHUD : MonoBehaviour
             _hearts[i].sprite = _heartSprites[0];
         }
 
-        Debug.Log("Current Health: " + _playerCurrentHealth);
-        for (int i = 1; i <= _playerCurrentHealth; i++)
-        {
-            Debug.Log("After Setup");
-            _hearts[i-1].sprite = _heartSprites[2];
-        }
+        //Debug.Log("Current Health: " + _playerCurrentHealth);
+        //for (int i = 1; i <= _playerCurrentHealth; i++)
+        //{
+        //    Debug.Log("After Setup");
+        //    _hearts[i-1].sprite = _heartSprites[2];
+        //}
     }
 
     private void DisplayCurrency() 

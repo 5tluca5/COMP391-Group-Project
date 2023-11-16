@@ -14,6 +14,6 @@ public class GameConstant
     public const float Initial_FireRate = 0.25f;
     public const float Initial_Damage = 1;
 
-    public const float Zombie_HP = 5;
+    public const float Zombie_HP = 2;
     public const float Zombie_Damage = 1;
 }

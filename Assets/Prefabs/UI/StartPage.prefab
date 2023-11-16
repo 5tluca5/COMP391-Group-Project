@@ -654,6 +654,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UICanvasGroup: {fileID: 4857012910550607232}
   mainUIManager: {fileID: 0}
+  menuClip: {fileID: 8300000, guid: 052a394e213449f4bb534a5e95805749, type: 3}
+  bgClip: {fileID: 8300000, guid: 0a3b39abc623b504ca5cc9ebbd5bc84c, type: 3}
   loadGameButton: {fileID: 8965423814636469971}
 --- !u!1 &4860966058031109502
 GameObject:

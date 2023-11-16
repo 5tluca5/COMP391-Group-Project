@@ -6,7 +6,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float speed = 300;
-    
+    public AudioClip clip;
+
     Rigidbody2D body;
     Animator animator;
     bool isFlipped;
@@ -17,6 +18,11 @@ public class Bullet : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         originScale = transform.localScale.x;
+    }
+
+    private void Start()
+    {
+        AudioManager.Instance.PlaySound(clip);
     }
 
     public void SetRotation(float angle, bool isFlipped)
