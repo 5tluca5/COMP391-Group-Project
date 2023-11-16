@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UniRx;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
     bool isGameStarted = false;
 
     // Upgrade
-    int currency = 0;
+    ReactiveProperty<int> currency = new ReactiveProperty<int>(0);
     Dictionary<AbilityType, Ability> abilities = new Dictionary<AbilityType, Ability>();
 
     private void Start()
@@ -56,7 +57,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
 
-        currency = 0;
+        currency.Value = 100;
 
         abilities.Clear();
 
@@ -67,7 +68,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadGame()
     {
-        currency = PlayerPrefs.GetInt(GameConstant.CURRENCY_KEY, 0);
+        currency.Value = PlayerPrefs.GetInt(GameConstant.CURRENCY_KEY, 0);
 
         abilities.Clear();
 
@@ -92,7 +93,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt(string.Format(GameConstant.ABILITY_LEVEL_KEY, kvp.Key.ToString()), kvp.Value.GetLevel());
         }
 
-        PlayerPrefs.SetInt(GameConstant.CURRENCY_KEY, currency);
+        PlayerPrefs.SetInt(GameConstant.CURRENCY_KEY, currency.Value);
 
         PlayerPrefs.SetString(GameConstant.LAST_SAVE_TIME_KEY, DateTime.UtcNow.ToString());
     }
@@ -106,14 +107,14 @@ public class GameManager : MonoBehaviour
     {
         var cost = abilities[type].GetUpgradeCost();
 
-        if (currency < cost) return false;
+        if (currency.Value < cost) return false;
 
         if (abilities[type].IsMaxLevel()) return false;
 
 
         if (abilities[type].LevelUp())
         {
-            currency -= cost;
+            currency.Value -= cost;
         }
 
         AutoSave();
@@ -147,7 +148,7 @@ public class GameManager : MonoBehaviour
         return player;
     }
 
-    public int GetCurrency() 
+    public ReactiveProperty<int> SubscribeCurrency() 
     {
         return currency;
     }

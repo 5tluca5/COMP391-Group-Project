@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 public enum AbilityType : int
 {
@@ -13,7 +14,7 @@ public abstract class Ability
 {
     public AbilityType abilityType;
     protected int maxLevel = 10;
-    protected int level;
+    protected ReactiveProperty<int> level = new ReactiveProperty<int>();
     protected List<int> costs = new List<int>();
 
     public abstract float GetCurrentEffect();
@@ -21,28 +22,32 @@ public abstract class Ability
 
     public int GetLevel()
     {
-        return level;
+        return level.Value;
     }
 
     public bool IsMaxLevel()
     {
-        return level >= maxLevel;
+        return level.Value >= maxLevel;
     }
 
     public bool LevelUp()
     {
-        if (level + 1 > maxLevel) return false;
+        if (level.Value + 1 > maxLevel) return false;
 
-        level++;
+        level.Value++;
 
         return true;
     }
 
     public int GetUpgradeCost()
     {
-        return costs.Count > level ? costs[level] : 99999;
+        return costs.Count > level.Value ? costs[level.Value] : 99999;
     }
 
+    public ReactiveProperty<int> SubscribeLevel()
+    {
+        return level;
+    }
 }
 
 public class AbilityHeath : Ability
@@ -54,17 +59,17 @@ public class AbilityHeath : Ability
         maxLevel = 10;
         costs = new List<int>() { 2, 4, 6, 8, 10, 20, 20, 20, 30, 30 };
         abilityType = AbilityType.MaxHP;
-        this.level = level;
+        this.level.Value = level;
     }
 
     public override float GetCurrentEffect()
     {
-        return effectPerLevel * level;
+        return effectPerLevel * level.Value;
     }
 
     public override float GetNextEffect()
     {
-        return effectPerLevel * (level + 1);
+        return effectPerLevel * (level.Value + 1);
     }
 }
 
@@ -77,17 +82,17 @@ public class AbilityFireRate : Ability
         maxLevel = 10;
         costs = new List<int>() { 5, 10, 15, 20, 25, 30, 30, 30, 30, 30 };
         abilityType = AbilityType.FireRate;
-        this.level = level;
+        this.level.Value = level;
     }
 
     public override float GetCurrentEffect()
     {
-        return effectPerLevel * level;
+        return effectPerLevel * level.Value;
     }
 
     public override float GetNextEffect()
     {
-        return effectPerLevel * (level + 1);
+        return effectPerLevel * (level.Value + 1);
     }
 }
 
@@ -100,16 +105,16 @@ public class AbilityDamage : Ability
         maxLevel = 10;
         costs = new List<int>() { 5, 10, 20, 20, 20, 30, 30, 40, 50, 60 };
         abilityType = AbilityType.Damage;
-        this.level = level;
+        this.level.Value = level;
     }
 
     public override float GetCurrentEffect()
     {
-        return effectPerLevel * level;
+        return effectPerLevel * level.Value;
     }
 
     public override float GetNextEffect()
     {
-        return effectPerLevel * (level + 1);
+        return effectPerLevel * (level.Value + 1);
     }
 }

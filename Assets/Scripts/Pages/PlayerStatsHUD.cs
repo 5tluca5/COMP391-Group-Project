@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UniRx;
 
 public class PlayerStatsHUD : MonoBehaviour
 {
@@ -39,7 +40,12 @@ public class PlayerStatsHUD : MonoBehaviour
     {
         _playerMaxHealth = _player.GetMaxHP();
         _playerCurrentHealth = _player.GetCurrentHP();
-        _currency = _gameManager.GetCurrency();
+
+        _gameManager.SubscribeCurrency().Subscribe(x =>
+        {
+            _currency = x;
+            DisplayCurrency();
+        }).AddTo(this);
     }
 
     public void SetupView() 
