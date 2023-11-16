@@ -127,6 +127,11 @@ public class GameManager : MonoBehaviour
         return abilities[type].GetUpgradeCost();
     }
 
+    public Ability GetAbility(AbilityType type)
+    {
+        return abilities[type];
+    }
+
     public float GetFireRate()
     {
         return Mathf.Max(0.05f, GameConstant.Initial_FireRate - abilities[AbilityType.FireRate].GetCurrentEffect());
@@ -151,5 +156,10 @@ public class GameManager : MonoBehaviour
     public ReactiveProperty<int> SubscribeCurrency() 
     {
         return currency;
+    }
+
+    public ReactiveProperty<int> SubscribeAbilityLevel(AbilityType type)
+    {
+        return abilities[type].SubscribeLevel();
     }
 }
