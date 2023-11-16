@@ -6,6 +6,8 @@ using DG.Tweening;
 public class Enemy : Mover
 {
     public Animator anim;
+    public SpriteRenderer mainSprite;
+    public SpriteRenderer smokeSprite;
     public float chaseSpeed = 0.5f;
 
     private Transform playerTransform;
@@ -15,6 +17,8 @@ public class Enemy : Mover
 
     private float curHP;
     private bool isDead = false;
+    private bool isBorn = false;
+    private bool canDestroy = false;
 
     protected override void Start()
     {
@@ -27,11 +31,28 @@ public class Enemy : Mover
         playerTransform = GameManager.Instance.player.transform;
         startingPosition = this.transform.position;
         curHP = GameConstant.Zombie_HP;
+
+        StartCoroutine(Born());
+    }
+
+    IEnumerator Born()
+    {
+        mainSprite.DOFade(0, 0);
+        smokeSprite.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+
+        mainSprite.DOFade(1, 0.25f);
+        smokeSprite.DOFade(0, 0.5f).onComplete += () =>
+        {
+            isBorn = true;
+        };
+        
     }
 
     private void FixedUpdate()
     {
-        if (isDead) return;
+        if (isDead || !isBorn) return;
 
         ChasePlayer();
     }
@@ -113,6 +134,11 @@ public class Enemy : Mover
 
         yield return new WaitForSeconds(1f);
 
-        GetComponent<SpriteRenderer>().DOFade(0, 0.2f).onComplete += () => { Destroy(gameObject); };
+        GetComponent<SpriteRenderer>().DOFade(0, 0.2f).onComplete += () => { canDestroy = true; };
+    }
+
+    public bool CanDestroy()
+    {
+        return canDestroy;
     }
 }

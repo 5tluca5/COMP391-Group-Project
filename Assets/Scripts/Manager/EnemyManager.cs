@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
+using System.Linq;
 
 public class EnemyManager : MonoBehaviour
 {
     public EdgeCollider2D edgeCollider;
     public SpriteShapeRenderer spriteRenderer; 
     public GameObject enemyPrefab; 
-    public int numPointsToGenerate = 20; 
+    public int numPointsToGenerate = 20;
+    public float spawnInterval = 0.2f;
 
+    List<Enemy> enemies = new List<Enemy>();
     private void Start()
     {
-
+        
     }
 
     public void GenerateZombies()
@@ -25,6 +28,7 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+
     private Vector2 GetRandomPointWithinCollider(Vector2[] colliderPoints)
     {
         float minX = float.MaxValue;
@@ -32,7 +36,6 @@ public class EnemyManager : MonoBehaviour
         float minY = float.MaxValue;
         float maxY = float.MinValue;
 
-        // �����ɽd�򪺳̤p�M�̤j��
         foreach (Vector2 point in colliderPoints)
         {
             if (point.x < minX)
@@ -45,7 +48,6 @@ public class EnemyManager : MonoBehaviour
                 maxY = point.y;
         }
 
-        // �b�d�򤺥ͦ��H���I
         float randomX = Random.Range(minX, maxX);
         float randomY = Random.Range(minY, maxY);
 
@@ -72,5 +74,11 @@ public class EnemyManager : MonoBehaviour
     private bool IsPositionInsideBounds(Vector2 position, Bounds bounds)
     {
         return bounds.Contains(position);
+    }
+
+    private void Reset()
+    {
+        enemies.ForEach(x => Destroy(x.gameObject));
+        enemies.Clear();
     }
 }
