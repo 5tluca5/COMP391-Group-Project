@@ -51,6 +51,7 @@ public class MainUIManager : MonoBehaviour
     public void ShowTimer()
     {
         _countdownTimer.gameObject.SetActive(true);
+        _countdownTimer.EnableGameTimer();
     }
 
     public void OpenPauseMenu() 

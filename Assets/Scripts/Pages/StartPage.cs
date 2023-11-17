@@ -49,11 +49,11 @@ public class StartPage : MonoBehaviour
 
         AudioManager.Instance.StopMusic();
         UICanvasGroup.DOFade(0, 1f).onComplete += () => {
-            mainUIManager.ShowTimer();
             AudioManager.Instance.PlayMusic(bgClip);
             UICanvasGroup.gameObject.SetActive(false);
             mainUIManager.OpenMainHUD();
             GameManager.Instance.StartGame();
+            mainUIManager.ShowTimer();
         };
     }
 }
