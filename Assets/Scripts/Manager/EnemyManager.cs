@@ -46,7 +46,7 @@ public class EnemyManager : MonoBehaviour
         {
             var randomPoint = GetRandomPointInSpriteShape(spriteRenderer);
 
-            var enemy = Instantiate(enemyPrefab, randomPoint, Quaternion.identity).GetComponent<Enemy>();
+            var enemy = Instantiate(enemyPrefab, randomPoint, Quaternion.identity, transform).GetComponent<Enemy>();
             enemies.Add(enemy);
         }
     }
