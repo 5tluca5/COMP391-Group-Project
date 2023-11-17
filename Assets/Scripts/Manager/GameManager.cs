@@ -26,10 +26,11 @@ public class GameManager : MonoBehaviour
     // Reference
     public MainCharacter player;
     public EnemyManager enemyManager;
+    public MainUIManager mainUIManager;
 
     // Game start / over
     bool isGameStarted = false;
-    bool isGameOvered = false;
+    bool isGameOver = false;
 
     // Upgrade
     ReactiveProperty<int> currency = new ReactiveProperty<int>(0);
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviour
 
     public bool IsGameOvered()
     {
-        return isGameOvered;
+        return isGameOver;
     }
 
     public void NewGame()
@@ -202,7 +203,8 @@ public class GameManager : MonoBehaviour
     {
         // show game over page
 
-        isGameOvered = true;
+        isGameOver = true;
         AutoSave();
+        mainUIManager.OpenGameOverPage();
     }
 }

@@ -12,6 +12,8 @@ public class MainUIManager : MonoBehaviour
     [SerializeField]
     private GameObject _upgradeUI;
     [SerializeField]
+    private GameObject _gameOverPage;
+    [SerializeField]
     private Button _backBtn;
 
     public void Start()
@@ -52,6 +54,12 @@ public class MainUIManager : MonoBehaviour
     {
         _countdownTimer.gameObject.SetActive(true);
         _countdownTimer.EnableGameTimer();
+    }
+
+    public void OpenGameOverPage()
+    {
+        _playerHUD.gameObject.SetActive(false);
+        _gameOverPage.SetActive(true);
     }
 
     public void OpenPauseMenu() 
