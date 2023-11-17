@@ -16,6 +16,7 @@ public class Enemy : Mover
     private Rigidbody2D rb;
 
     private float curHP;
+    private float damage;
     private bool isDead = false;
     private bool isBorn = false;
     private bool canDestroy = false;
@@ -31,6 +32,7 @@ public class Enemy : Mover
         playerTransform = GameManager.Instance.player.transform;
         startingPosition = this.transform.position;
         curHP = GameConstant.Zombie_HP;
+        damage = GameConstant.Zombie_Damage;
 
         StartCoroutine(Born());
     }
@@ -52,7 +54,7 @@ public class Enemy : Mover
 
     private void FixedUpdate()
     {
-        if (isDead || !isBorn) return;
+        if (isDead || !isBorn || GameManager.Instance.IsGameOvered()) return;
 
         ChasePlayer();
     }
@@ -94,8 +96,7 @@ public class Enemy : Mover
         {
             StartCoroutine(PerformDead());
         }
-
-        if (collision.gameObject.tag == "Bullet")
+        else if(collision.gameObject.tag == "Bullet")
         {
             //    Vector2 enemyPosition = new Vector2(transform.position.x, transform.position.y);
             //    Vector2 bulletPosition = new Vector2(collision.transform.position.x, collision.transform.position.y);
@@ -104,6 +105,10 @@ public class Enemy : Mover
             pushDirection = collision.relativeVelocity.normalized * collision.gameObject.GetComponent<Bullet>().speed;
             Debug.Log("Bullet force: " + pushDirection);
 
+        }
+        else if(collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.SendMessage("ReceiveDamage", damage);
         }
     }
 

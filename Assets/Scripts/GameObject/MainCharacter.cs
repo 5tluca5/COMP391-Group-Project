@@ -23,6 +23,7 @@ public class MainCharacter : MonoBehaviour {
     private float                 m_rollDuration = 8.0f / 14.0f;
     private float                 m_rollCurrentTime;
     private float                 m_fireRate = 0.25f;
+    private bool                  m_invincible = false;
     private ReactiveProperty<int> m_maxHP = new ReactiveProperty<int>(5);
     private ReactiveProperty<int> m_curHP = new ReactiveProperty<int>(5);
     
@@ -44,9 +45,9 @@ public class MainCharacter : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void LateUpdate ()
+    void LateUpdate()
     {
-        if (!GameManager.Instance.IsGameStarted()) return;
+        if (!GameManager.Instance.IsGameStarted() || GameManager.Instance.IsGameOvered() || Time.timeScale <= 0) return;
 
         // Increase timer that controls attack combo
         m_timeSinceAttack += Time.deltaTime;
@@ -142,20 +143,16 @@ public class MainCharacter : MonoBehaviour {
         m_fireRate = fireRate;
     }
 
-    //public void InitHP(float hp)
-    //{
-    //    m_maxHP = hp;
-    //    m_curHP = hp;
-    //}
+    public void RestoreHP(int hp)
+    {
+        m_curHP.Value += hp;
+    }
 
-    //public void SetCurrentHP(float hp)
-    //{
-    //    m_curHP = hp;
-    //}
-    //public void SetMaxHP(float hp)
-    //{
-    //    m_maxHP = hp;
-    //}
+    public void SetCurHP(int hp)
+    {
+        m_curHP.Value = hp;
+    }
+
     public ReactiveProperty<int> SubscribeMaxHP()
     {
         return m_maxHP;
@@ -163,5 +160,46 @@ public class MainCharacter : MonoBehaviour {
     public ReactiveProperty<int> SubscribeCurrentHP()
     {
         return m_curHP;
+    }
+
+    public void ReceiveDamage(int dmg)
+    {
+        if (m_invincible) return;
+
+        m_curHP.Value -= dmg;
+
+        if (m_curHP.Value <= 0)
+        {
+            StartCoroutine(PerformDead());
+        }
+        else
+        {
+            StartCoroutine(PerformHurt());
+        }
+    }
+
+    IEnumerator PerformDead()
+    {
+        m_invincible = true;
+
+        m_animator.SetTrigger("Death");
+
+        yield return new WaitForSeconds(1.5f);
+
+
+        GameManager.Instance.GameOver();
+    }
+
+    IEnumerator PerformHurt()
+    {
+        m_invincible = true;
+
+        m_animator.SetTrigger("Hurt");
+
+        yield return new WaitForSeconds(0.6f);
+
+        m_invincible = false;
+
+        m_animator.SetTrigger("HurtEnded");
     }
 }
