@@ -47,6 +47,12 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void ReloadScene()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
+    }
+
     public void InitGame()
     {
         player.Init();
@@ -97,7 +103,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
 
-        currency.Value = 100;
+        currency.Value = 0;
 
         abilities.Clear();
 
@@ -231,5 +237,6 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         AutoSave();
         mainUIManager.OpenGameOverPage();
+        //ReloadScene();
     }
 }

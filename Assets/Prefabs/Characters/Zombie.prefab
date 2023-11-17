@@ -258,7 +258,7 @@ MonoBehaviour:
   mainSprite: {fileID: 2237558311494126426}
   smokeSprite: {fileID: 6588803945472182342}
   dropItemPrefab: {fileID: 5095121571491550695, guid: e143c3106c0f9824faf8e984e67d2274, type: 3}
-  chaseSpeed: 1.3
+  chaseSpeed: 2
 --- !u!114 &1922503195309074018
 MonoBehaviour:
   m_ObjectHideFlags: 0
