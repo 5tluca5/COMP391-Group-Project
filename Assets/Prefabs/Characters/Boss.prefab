@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.4887834, y: -3.044009, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5529184054434685398}
@@ -203,11 +203,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7333dc4cd346394a9f74f25bd4f8148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushRecoverySpeed: 0.9
+  pushRecoverySpeed: 0.95
   anim: {fileID: 0}
   mainSprite: {fileID: 7676351868427754983}
   attackDetecter: {fileID: 8727718644456394414}
-  chaseSpeed: 2
+  chaseSpeed: 2.6
 --- !u!1 &3650913547579014575
 GameObject:
   m_ObjectHideFlags: 0
