@@ -19,6 +19,7 @@ public abstract class Ability
 
     public abstract float GetCurrentEffect();
     public abstract float GetNextEffect();
+    public abstract float GetEffectPerLevel();
 
     public int GetLevel()
     {
@@ -57,7 +58,7 @@ public class AbilityHeath : Ability
     public AbilityHeath(int level)
     {
         maxLevel = 10;
-        costs = new List<int>() { 2, 4, 6, 8, 10, 20, 20, 20, 30, 30 };
+        costs = new List<int>() { 2, 4, 6, 8, 10, 20, 25, 30, 35, 40 };
         abilityType = AbilityType.MaxHP;
         this.level.Value = level;
     }
@@ -71,6 +72,10 @@ public class AbilityHeath : Ability
     {
         return effectPerLevel * (level.Value + 1);
     }
+    public override float GetEffectPerLevel()
+    {
+        return effectPerLevel;
+    }
 }
 
 public class AbilityFireRate : Ability
@@ -80,7 +85,7 @@ public class AbilityFireRate : Ability
     public AbilityFireRate(int level)
     {
         maxLevel = 10;
-        costs = new List<int>() { 5, 10, 15, 20, 25, 30, 30, 30, 30, 30 };
+        costs = new List<int>() { 5, 10, 15, 20, 25, 30, 35, 40, 50, 60 };
         abilityType = AbilityType.FireRate;
         this.level.Value = level;
     }
@@ -94,6 +99,10 @@ public class AbilityFireRate : Ability
     {
         return effectPerLevel * (level.Value + 1);
     }
+    public override float GetEffectPerLevel()
+    {
+        return effectPerLevel;
+    }
 }
 
 public class AbilityDamage : Ability
@@ -103,7 +112,7 @@ public class AbilityDamage : Ability
     public AbilityDamage(int level)
     {
         maxLevel = 10;
-        costs = new List<int>() { 5, 10, 20, 20, 20, 30, 30, 40, 50, 60 };
+        costs = new List<int>() { 5, 10, 20, 25, 30, 40, 50, 60, 70, 80 };
         abilityType = AbilityType.Damage;
         this.level.Value = level;
     }
@@ -116,5 +125,9 @@ public class AbilityDamage : Ability
     public override float GetNextEffect()
     {
         return effectPerLevel * (level.Value + 1);
+    }
+    public override float GetEffectPerLevel()
+    {
+        return effectPerLevel;
     }
 }

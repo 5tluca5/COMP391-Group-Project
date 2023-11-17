@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     // Game start / over
     bool isGameStarted = false;
+    bool isGameOvered = false;
 
     // Upgrade
     ReactiveProperty<int> currency = new ReactiveProperty<int>(0);
@@ -59,6 +60,11 @@ public class GameManager : MonoBehaviour
     public bool IsGameStarted()
     {
         return isGameStarted;
+    }
+
+    public bool IsGameOvered()
+    {
+        return isGameOvered;
     }
 
     public void NewGame()
@@ -109,6 +115,7 @@ public class GameManager : MonoBehaviour
     public void SetupPlayer()
     {
         player.SetFireRate(GetFireRate());
+        player.SetCurHP((int)GetMaxHP());
     }
 
     public bool UpgradeAbility(AbilityType type)
@@ -125,8 +132,17 @@ public class GameManager : MonoBehaviour
             currency.Value -= cost;
         }
 
+        switch (type)
+        {
+            case AbilityType.MaxHP:
+                player.RestoreHP((int)abilities[type].GetEffectPerLevel());
+                break;
+            case AbilityType.FireRate:
+                player.SetFireRate(GetFireRate());
+                break;
+        }
+
         AutoSave();
-        SetupPlayer();
 
         return true;
     }
@@ -151,7 +167,11 @@ public class GameManager : MonoBehaviour
         return GameConstant.Initial_Damage + abilities[AbilityType.Damage].GetCurrentEffect();
     }
 
-    
+    public float GetMaxHP()
+    {
+        return GameConstant.Initial_HP + abilities[AbilityType.MaxHP].GetCurrentEffect();
+    }
+
     public bool IsMaxLevel(AbilityType type) 
     {
         return abilities[type].IsMaxLevel();
@@ -170,5 +190,12 @@ public class GameManager : MonoBehaviour
     public ReactiveProperty<int> SubscribeAbilityLevel(AbilityType type)
     {
         return abilities[type].SubscribeLevel();
+    }
+
+    public void GameOver()
+    {
+        // show game over page
+
+        isGameOvered = true;
     }
 }
