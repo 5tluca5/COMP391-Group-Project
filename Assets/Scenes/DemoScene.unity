@@ -5038,7 +5038,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PAUSE/SETTING MENU
+  m_Text: SETTING MENU
 --- !u!222 &378426289
 CanvasRenderer:
   m_ObjectHideFlags: 0
