@@ -16,4 +16,6 @@ public class GameConstant
 
     public const float Zombie_HP = 2;
     public const float Zombie_Damage = 1;
+
+    public const float Wave_Timer = 180;
 }

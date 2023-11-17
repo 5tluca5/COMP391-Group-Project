@@ -8,6 +8,8 @@ public class MainUIManager : MonoBehaviour
     [SerializeField]
     private PlayerStatsHUD _playerHUD;
     [SerializeField]
+    private CountdownTimer _countdownTimer;
+    [SerializeField]
     private GameObject _upgradeUI;
     [SerializeField]
     private Button _backBtn;
@@ -44,6 +46,11 @@ public class MainUIManager : MonoBehaviour
         Time.timeScale = 1;
         _playerHUD.gameObject.SetActive(true);
         _upgradeUI.SetActive(false);
+    }
+
+    public void ShowTimer()
+    {
+        _countdownTimer.gameObject.SetActive(true);
     }
 
     public void OpenPauseMenu() 

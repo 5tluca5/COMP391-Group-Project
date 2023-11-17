@@ -9,10 +9,13 @@ public class PlayerStatsHUD : MonoBehaviour
 {
     [SerializeField]
     private GameManager _gameManager;
+    [SerializeField]
+    private CountdownTimer _countdownTimer;
+    [SerializeField]
+    private GameObject _bossHealthGO;
 
     [SerializeField]
     private Text _currencyTxt;
-
 
     [SerializeField]
     private Image[] _hearts;
@@ -28,7 +31,7 @@ public class PlayerStatsHUD : MonoBehaviour
     private void Awake()
     {
         _player = _gameManager.GetPlayer();
-        GetStats();
+        SetupStats();
     }
 
     private void Start()
@@ -36,18 +39,20 @@ public class PlayerStatsHUD : MonoBehaviour
         SetupView();
     }
 
-    private void GetStats() 
+    private void SetupStats() 
     {
         _gameManager.SubscribeAbilityLevel(AbilityType.MaxHP).Subscribe(x =>
         {
             _playerMaxHealth = (int)(GameConstant.Initial_HP + _gameManager.GetAbility(AbilityType.MaxHP).GetCurrentEffect());
-        }).AddTo(this);
-        _player.SubscribeCurrentHP().Subscribe( x => {
-            _playerCurrentHealth = x;
             DisplayHearts();
+            DisplayCurrentHearts();
         }).AddTo(this);
-        //_playerMaxHealth = _player.GetMaxHP();
-        //_playerCurrentHealth = _player.GetCurrentHP();
+
+        _player.SubscribeCurrentHP().Subscribe(x =>
+        {
+            _playerCurrentHealth = x;
+            DisplayCurrentHearts();
+        }).AddTo(this);
 
         _gameManager.SubscribeCurrency().Subscribe(x =>
         {
@@ -60,6 +65,7 @@ public class PlayerStatsHUD : MonoBehaviour
     {
         DisplayCurrency();
         DisplayHearts();
+        DisplayCurrentHearts();
     }
 
     private void DisplayHearts() 
@@ -70,13 +76,16 @@ public class PlayerStatsHUD : MonoBehaviour
             _hearts[i].gameObject.SetActive(true);
             _hearts[i].sprite = _heartSprites[0];
         }
+    }
 
-        //Debug.Log("Current Health: " + _playerCurrentHealth);
-        //for (int i = 1; i <= _playerCurrentHealth; i++)
-        //{
-        //    Debug.Log("After Setup");
-        //    _hearts[i-1].sprite = _heartSprites[2];
-        //}
+    private void DisplayCurrentHearts()
+    {
+        Debug.Log("Current Health: " + _playerCurrentHealth);
+        for (int i = 1; i <= _playerCurrentHealth; i++)
+        {
+            _hearts[i - 1].sprite = _heartSprites[2];
+            Debug.Log("Current Health: " + i);
+        }
     }
 
     private void DisplayCurrency() 
@@ -84,12 +93,4 @@ public class PlayerStatsHUD : MonoBehaviour
         _currencyTxt.text = "x " + _currency.ToString();
     }
 
-    public void OnPlayerGetHit() 
-    {
-        _player.SubscribeCurrentHP().Subscribe(x =>
-        {
-            _playerCurrentHealth = x;
-            DisplayHearts();
-        }).AddTo(this);
-    }
 }
