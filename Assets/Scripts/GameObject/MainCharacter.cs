@@ -15,6 +15,7 @@ public class MainCharacter : MonoBehaviour {
 
     private Animator              m_animator;
     private Rigidbody2D           m_body2d;
+    private BoxCollider2D         m_collider2d;
     private bool                  m_grounded = false;
     private bool                  m_rolling = false;
     private bool                  runIdleIsPlayying = false;
@@ -32,8 +33,9 @@ public class MainCharacter : MonoBehaviour {
     {
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
+        m_collider2d = GetComponent<BoxCollider2D>();
 
-        if(weapons.Count <= 0)
+        if (weapons.Count <= 0)
         {
             weapons = GetComponentsInChildren<Weapon>().ToList();
         }
@@ -195,11 +197,16 @@ public class MainCharacter : MonoBehaviour {
         m_invincible = true;
 
         m_animator.SetTrigger("Hurt");
+        m_collider2d.excludeLayers = LayerMask.GetMask("Enemy");
 
         yield return new WaitForSeconds(0.6f);
 
-        m_invincible = false;
-
         m_animator.SetTrigger("HurtEnded");
+
+        yield return new WaitForSeconds(0.2f);
+
+        m_collider2d.excludeLayers = LayerMask.GetMask();
+
+        m_invincible = false;
     }
 }
