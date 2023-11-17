@@ -192,10 +192,17 @@ public class GameManager : MonoBehaviour
         return abilities[type].SubscribeLevel();
     }
 
+    public void CollectItem(Item item)
+    {
+        if (item == null) return;
+
+        currency.Value += item.value;
+    }
     public void GameOver()
     {
         // show game over page
 
         isGameOvered = true;
+        AutoSave();
     }
 }

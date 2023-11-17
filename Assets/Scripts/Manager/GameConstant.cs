@@ -13,9 +13,12 @@ public class GameConstant
     public const float Initial_HP = 5f;
     public const float Initial_FireRate = 0.25f;
     public const float Initial_Damage = 1;
-
-    public const float Zombie_HP = 2;
+    public const float Zombie_HP = 4;
     public const float Zombie_Damage = 1;
 
     public const float Wave_Timer = 180;
+
+    //Resources
+    public const int Drop_Resource_Max = 3;
+    public static readonly int[] Drop_Resource_Ratio = { 1, 2, 99 };
 }

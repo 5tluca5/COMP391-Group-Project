@@ -8,6 +8,7 @@ public class Enemy : Mover
     public Animator anim;
     public SpriteRenderer mainSprite;
     public SpriteRenderer smokeSprite;
+    public GameObject dropItemPrefab;
     public float chaseSpeed = 0.5f;
 
     private Transform playerTransform;
@@ -87,7 +88,6 @@ public class Enemy : Mover
         //}
 
         this.UpdateMotor(chasingDirection * chaseSpeed);
-        //rb.AddForce(chasingDirection * chaseSpeed);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -139,11 +139,18 @@ public class Enemy : Mover
 
         yield return new WaitForSeconds(1f);
 
+        DropItem();
+
         GetComponent<SpriteRenderer>().DOFade(0, 0.2f).onComplete += () => { canDestroy = true; };
     }
 
     public bool CanDestroy()
     {
         return canDestroy;
+    }
+
+    void DropItem()
+    {
+        Instantiate(dropItemPrefab, transform.position, Quaternion.identity);
     }
 }

@@ -82,7 +82,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2107988641
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 1801654070, guid: 76a266b9e85c06f40be4251425f88c6a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -257,6 +257,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   mainSprite: {fileID: 2237558311494126426}
   smokeSprite: {fileID: 6588803945472182342}
+  dropItemPrefab: {fileID: 5095121571491550695, guid: e143c3106c0f9824faf8e984e67d2274, type: 3}
   chaseSpeed: 1.3
 --- !u!114 &1922503195309074018
 MonoBehaviour:
@@ -291,7 +292,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7690260596819176458, guid: 84ab9a6ab89c1fa4cb300e2b4a7fb9f8, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7690260596819176458, guid: 84ab9a6ab89c1fa4cb300e2b4a7fb9f8, type: 3}
       propertyPath: m_SortingOrder
