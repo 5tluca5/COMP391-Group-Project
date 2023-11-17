@@ -1,25 +1,27 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
+using Unity.VisualScripting;
 using UnityEngine;
-using DG.Tweening;
 
-public class Enemy : Mover
+public class Boss : Mover
 {
     public Animator anim;
     public SpriteRenderer mainSprite;
-    public SpriteRenderer smokeSprite;
-    public GameObject dropItemPrefab;
-    public float chaseSpeed = 0.5f;
+    public BoxCollider2D attackDetecter;
+    public float chaseSpeed = 2f;
 
     private Transform playerTransform;
     private Vector3 startingPosition;
     private BoxCollider2D hitbox;
     private Rigidbody2D rb;
 
-    private float curHP;
+    private ReactiveProperty<float> curHP = new ReactiveProperty<float>();
     private float damage;
     private bool isDead = false;
     private bool isBorn = false;
+    private bool isAttacking = false;
     private bool canDestroy = false;
 
     protected override void Start()
@@ -32,29 +34,21 @@ public class Enemy : Mover
 
         playerTransform = GameManager.Instance.player.transform;
         startingPosition = this.transform.position;
-        curHP = GameConstant.Zombie_HP;
-        damage = GameConstant.Zombie_Damage;
+        curHP.Value = GameConstant.Boss_HP;
+        damage = GameConstant.Boss_Damage;
+        pushRecoverySpeed = 0.9f;
 
         StartCoroutine(Born());
     }
-
     IEnumerator Born()
     {
-        mainSprite.DOFade(0, 0);
-        smokeSprite.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
 
-        yield return new WaitForSeconds(0.5f);
-
-        mainSprite.DOFade(1, 0.25f);
-        smokeSprite.DOFade(0, 0.5f).onComplete += () =>
-        {
-            isBorn = true;
-        };
+        isBorn = true;
     }
-
     private void FixedUpdate()
     {
-        if (isDead || !isBorn || GameManager.Instance.IsGameOvered()) return;
+        if (isDead || !isBorn || isAttacking || GameManager.Instance.IsGameOvered()) return;
 
         ChasePlayer();
     }
@@ -91,11 +85,7 @@ public class Enemy : Mover
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("DeathEdge"))
-        {
-            StartCoroutine(PerformDead());
-        }
-        else if(collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "Bullet")
         {
             //    Vector2 enemyPosition = new Vector2(transform.position.x, transform.position.y);
             //    Vector2 bulletPosition = new Vector2(collision.transform.position.x, collision.transform.position.y);
@@ -105,7 +95,7 @@ public class Enemy : Mover
             Debug.Log("Bullet force: " + pushDirection);
 
         }
-        else if(collision.gameObject.CompareTag("Player"))
+        else if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.SendMessage("ReceiveDamage", damage);
         }
@@ -113,9 +103,9 @@ public class Enemy : Mover
 
     void ReceiveDamage(float dmg)
     {
-        curHP -= dmg;
+        curHP.Value -= dmg;
 
-        if(curHP <= 0)
+        if (curHP.Value <= 0)
         {
             StartCoroutine(PerformDead());
         }
@@ -138,23 +128,36 @@ public class Enemy : Mover
 
         yield return new WaitForSeconds(1f);
 
-        DropItem();
-
-        GetComponent<SpriteRenderer>().DOFade(0, 0.2f).onComplete += () => { canDestroy = true; };
+        GameManager.Instance.GameOver();
     }
 
-    public bool CanDestroy()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        return canDestroy;
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            StartCoroutine(PerformAttack());
+        }
     }
 
-    void DropItem()
+
+    IEnumerator PerformAttack()
     {
-        Instantiate(dropItemPrefab, transform.position, Quaternion.identity);
+        if (!isAttacking) yield return null;
+
+        isAttacking = true;
+        anim.SetTrigger("Attack");
+
+        yield return new WaitForSeconds(0.2f);
+        attackDetecter.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(0.7f);
+        attackDetecter.gameObject.SetActive(false);
+
+        isAttacking = false;
     }
 
-    public void ForceDead()
+    public ReactiveProperty<float> SubscribeHP()
     {
-        ReceiveDamage(curHP);
+        return curHP;
     }
 }

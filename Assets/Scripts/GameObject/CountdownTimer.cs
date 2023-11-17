@@ -10,8 +10,17 @@ public class CountdownTimer : MonoBehaviour
     public bool timerIsRunning = false;
 
     public ReactiveProperty<float> time { get; private set; }
-    public ReactiveProperty<bool> timeRunOut { get; private set; }
+    public Subject<bool> timeRunOut { get; private set; }
     public Text timeText;
+
+    private void Awake()
+    {
+        timeRunOut = new Subject<bool>();
+
+    }
+    private void Start()
+    {
+    }
 
     void Update()
     {
@@ -28,7 +37,7 @@ public class CountdownTimer : MonoBehaviour
                 Debug.Log("Time has run out!");
                 timeRemaining = 0;
                 timerIsRunning = false;
-                timeRunOut = (ReactiveProperty<bool>)time.Select(x => x == 0).ToReactiveProperty(); 
+                timeRunOut.OnNext(true);
             }
         }
 
@@ -47,7 +56,7 @@ public class CountdownTimer : MonoBehaviour
         timerIsRunning = true;
     }
 
-    public ReactiveProperty<bool> SubscribeTimeRunOut() 
+    public Subject<bool> SubscribeTimeRunOut() 
     {
         return timeRunOut;
     }

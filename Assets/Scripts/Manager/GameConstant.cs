@@ -10,13 +10,15 @@ public class GameConstant
     public const string CURRENCY_KEY = "CURRENCY_KEY";
 
     //Initial values
-    public const float Initial_HP = 5f;
+    public const float Initial_HP = 10f;
     public const float Initial_FireRate = 0.25f;
     public const float Initial_Damage = 1;
     public const float Zombie_HP = 4;
     public const float Zombie_Damage = 1;
+    public const float Boss_HP = 50000;
+    public const float Boss_Damage = 3;
 
-    public const float Wave_Timer = 180;
+    public const float Wave_Timer = 18;
 
     //Resources
     public const int Drop_Resource_Max = 3;

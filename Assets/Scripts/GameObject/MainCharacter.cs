@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using UniRx;
+using UnityEngine.Rendering.Universal;
 
 public class MainCharacter : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class MainCharacter : MonoBehaviour {
     [SerializeField] float        m_jumpForce = 7.5f;
     [SerializeField] float        m_rollForce = 6.0f;
     [SerializeField] GameObject   m_slideDust;
+    [SerializeField] Light2D      m_globalLight;
 
     public List<Weapon>           weapons = new List<Weapon>();
 
@@ -51,6 +53,10 @@ public class MainCharacter : MonoBehaviour {
     {
         if (!GameManager.Instance.IsGameStarted() || GameManager.Instance.IsGameOvered() || Time.timeScale <= 0) return;
 
+        // -- Handle input and movement --
+        float inputX = Input.GetAxis("Horizontal");
+        float inputY = Input.GetAxis("Vertical");
+
         // Increase timer that controls attack combo
         m_timeSinceAttack += Time.deltaTime;
 
@@ -69,46 +75,20 @@ public class MainCharacter : MonoBehaviour {
             m_animator.SetBool("Grounded", m_grounded);
         }
 
-        // -- Handle input and movement --
-        float inputX = Input.GetAxis("Horizontal");
-        float inputY = Input.GetAxis("Vertical");
-
-        
-        // Swap direction of sprite depending on walk direction
-        if (inputX > 0)
-        {
-            GetComponent<SpriteRenderer>().flipX = false;
-            weapons[0].SetPositionX(weapons[0].IsUltimate() ? 0.5f : 0.38f);
-            weapons[1].SetPositionX(weapons[1].IsUltimate() ? -0.4f : -0.28f);
-        }
-            
-        else if (inputX < 0)
-        {
-            GetComponent<SpriteRenderer>().flipX = true;
-            weapons[0].SetPositionX(weapons[0].IsUltimate() ? 0.4f : 0.28f);
-            weapons[1].SetPositionX(weapons[1].IsUltimate() ? -0.5f : -0.38f);
-        }
-
-        // Move
-        if (!m_rolling )
-            m_body2d.velocity = new Vector2(inputX * m_speed, inputY * m_speed);
-
-        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);
-
         // -- Handle Animations --
         //Death
-        if (Input.GetKeyDown("e") && !m_rolling)
-        {
-            //m_animator.SetBool("noBlood", m_noBlood);
-            m_animator.SetTrigger("Death");
-        }
+        //if (Input.GetKeyDown("e") && !m_rolling)
+        //{
+        //    //m_animator.SetBool("noBlood", m_noBlood);
+        //    m_animator.SetTrigger("Death");
+        //}
             
         //Hurt
-        else if (Input.GetKeyDown("q") && !m_rolling)
-            m_animator.SetTrigger("Hurt");
+        //else if (Input.GetKeyDown("q") && !m_rolling)
+        //    m_animator.SetTrigger("Hurt");
 
         //Attack
-        else if(Input.GetMouseButton(0) && m_timeSinceAttack > m_fireRate && !m_rolling)
+        if(Input.GetMouseButton(0) && m_timeSinceAttack > m_fireRate && !m_rolling)
         {
             m_currentAttack++;
 
@@ -126,10 +106,42 @@ public class MainCharacter : MonoBehaviour {
 
             // Reset timer
             m_timeSinceAttack = 0.0f;
+
         }
 
+
+        if(Input.GetMouseButton(0))
+        {
+            // slow down
+            inputX *= 0.4f;
+            inputY *= 0.4f;
+        }
+
+        // Swap direction of sprite depending on walk direction
+        if (inputX > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+            weapons[0].SetPositionX(weapons[0].IsUltimate() ? 0.5f : 0.38f);
+            weapons[1].SetPositionX(weapons[1].IsUltimate() ? -0.4f : -0.28f);
+        }
+
+        else if (inputX < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+            weapons[0].SetPositionX(weapons[0].IsUltimate() ? 0.4f : 0.28f);
+            weapons[1].SetPositionX(weapons[1].IsUltimate() ? -0.5f : -0.38f);
+        }
+
+        // Move
+        if (!m_rolling)
+            m_body2d.velocity = new Vector2(inputX * m_speed, inputY * m_speed);
+
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);
+
+
         //Run
-        m_animator.SetFloat("Speed", (Mathf.Abs(inputX) > Mathf.Epsilon || Mathf.Abs(inputY) > Mathf.Epsilon) ? 1 : 0);
+        //m_animator.SetFloat("Speed", (Mathf.Abs(inputX) > Mathf.Epsilon || Mathf.Abs(inputY) > Mathf.Epsilon) ? 1 : 0);
+        m_animator.SetFloat("Speed", Mathf.Abs(Mathf.Max(Mathf.Abs(inputX), Mathf.Abs(inputY))));
 
         if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("RunIdleTrans"))
         {
@@ -188,7 +200,6 @@ public class MainCharacter : MonoBehaviour {
 
         yield return new WaitForSeconds(1.5f);
 
-
         GameManager.Instance.GameOver();
     }
 
@@ -208,5 +219,10 @@ public class MainCharacter : MonoBehaviour {
         m_collider2d.excludeLayers = LayerMask.GetMask();
 
         m_invincible = false;
+    }
+
+    public void EnterBossPhase()
+    {
+        m_globalLight.color = Color.red;
     }
 }

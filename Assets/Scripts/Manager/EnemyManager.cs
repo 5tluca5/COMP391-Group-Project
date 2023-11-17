@@ -7,14 +7,16 @@ using System.Linq;
 public class EnemyManager : MonoBehaviour
 {
     public EdgeCollider2D edgeCollider;
-    public SpriteShapeRenderer spriteRenderer; 
-    public GameObject enemyPrefab; 
+    public SpriteShapeRenderer spriteRenderer;
+    public GameObject enemyPrefab;
+    public GameObject bossPrefab;
     public int numPointsToGenerate = 20;
     public float spawnInterval = 0.2f;
 
     bool enableSpawning = false;
     float spawnTimer = 0;
     List<Enemy> enemies = new List<Enemy>();
+    Boss boss = null;
 
     private void Start()
     {
@@ -120,4 +122,20 @@ public class EnemyManager : MonoBehaviour
         //    Destroy(e.gameObject);
         //}
     }
+
+    public void KillAllZombies()
+    {
+        enemies.ForEach(x => x.ForceDead());
+    }
+
+    public Boss SpawnBoss()
+    {
+        if (boss != null) return null;
+
+        boss = Instantiate(bossPrefab, GameManager.Instance.player.transform.position + new Vector3(5,5), Quaternion.identity, transform).GetComponent<Boss>();
+
+        return boss;
+    }
+
+    
 }

@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
     Animator animator;
     bool isFlipped;
     float originScale = 1;
+    float damage = 1;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class Bullet : MonoBehaviour
     private void Start()
     {
         AudioManager.Instance.PlaySound(clip);
+        damage = GameManager.Instance.GetBulletDamage();
     }
 
     public void SetRotation(float angle, bool isFlipped)
@@ -41,9 +43,9 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Boss"))
         {
-            collision.gameObject.SendMessage("ReceiveDamage", 1);
+            collision.gameObject.SendMessage("ReceiveDamage", damage);
         }
         //animator.SetTrigger("Hit");
         Destroy(gameObject);

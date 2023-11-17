@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UniRx;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +28,11 @@ public class GameManager : MonoBehaviour
     public MainCharacter player;
     public EnemyManager enemyManager;
     public MainUIManager mainUIManager;
+    public CountdownTimer timer;
+
+    // Boss HP bar (Lucas: Too lazy to create a class hehe)
+    public GameObject bossHpGO;
+    public Slider bossHpBarSlider;
 
     // Game start / over
     bool isGameStarted = false;
@@ -47,6 +53,7 @@ public class GameManager : MonoBehaviour
         SetupPlayer();
 
         enemyManager.SetZombieSpawning(true);
+
     }
 
     public void StartGame()
@@ -54,6 +61,24 @@ public class GameManager : MonoBehaviour
         if (isGameStarted) return;
 
         isGameStarted = true;
+
+        timer.SubscribeTimeRunOut().Subscribe(x =>
+        {
+            enemyManager.SetZombieSpawning(false);
+            enemyManager.KillAllZombies();
+
+            bossHpGO.SetActive(true);
+            bossHpBarSlider.maxValue = GameConstant.Boss_HP;
+            bossHpBarSlider.minValue = 0;
+
+            enemyManager.SpawnBoss().SubscribeHP().Subscribe(x =>
+            {
+                bossHpBarSlider.value = x;
+
+            }).AddTo(this);
+
+            player.EnterBossPhase();
+        }).AddTo(this);
 
         InvokeRepeating("AutoSave", 10f, 10f);
     }
