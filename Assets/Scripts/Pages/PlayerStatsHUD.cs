@@ -10,8 +10,6 @@ public class PlayerStatsHUD : MonoBehaviour
     [SerializeField]
     private GameManager _gameManager;
     [SerializeField]
-    private CountdownTimer _countdownTimer;
-    [SerializeField]
     private GameObject _bossHealthGO;
 
     [SerializeField]
@@ -21,7 +19,6 @@ public class PlayerStatsHUD : MonoBehaviour
     private Image[] _hearts;
     [SerializeField]
     private Sprite[] _heartSprites;
-
 
     private int _playerCurrentHealth;
     private int _playerMaxHealth;
@@ -45,13 +42,14 @@ public class PlayerStatsHUD : MonoBehaviour
         {
             _playerMaxHealth = (int)(GameConstant.Initial_HP + _gameManager.GetAbility(AbilityType.MaxHP).GetCurrentEffect());
             DisplayHearts();
-            DisplayCurrentHearts();
+            //DisplayCurrentHearts();
         }).AddTo(this);
 
-        _player.SubscribeCurrentHP().Subscribe(x =>
+        _gameManager.GetPlayer().SubscribeCurrentHP().Subscribe(x =>
         {
             _playerCurrentHealth = x;
-            DisplayCurrentHearts();
+            DisplayHearts();
+           // DisplayCurrentHearts();
         }).AddTo(this);
 
         _gameManager.SubscribeCurrency().Subscribe(x =>
@@ -65,7 +63,6 @@ public class PlayerStatsHUD : MonoBehaviour
     {
         DisplayCurrency();
         DisplayHearts();
-        DisplayCurrentHearts();
     }
 
     private void DisplayHearts() 
@@ -73,18 +70,21 @@ public class PlayerStatsHUD : MonoBehaviour
         //To display max hearts,
         for (int i = 0; i < _playerMaxHealth; i++) 
         {
-            _hearts[i].gameObject.SetActive(true);
+            if(!_hearts[i].gameObject.activeSelf)
+                _hearts[i].gameObject.SetActive(true);
+
             _hearts[i].sprite = _heartSprites[0];
         }
+        DisplayCurrentHearts();
     }
 
     private void DisplayCurrentHearts()
     {
-        Debug.Log("Current Health: " + _playerCurrentHealth);
-        for (int i = 1; i <= _playerCurrentHealth; i++)
+        var index = _playerCurrentHealth;
+
+        for (int i = 0; i < index; i++)
         {
-            _hearts[i - 1].sprite = _heartSprites[2];
-            Debug.Log("Current Health: " + i);
+            _hearts[i].sprite = _heartSprites[2];
         }
     }
 
