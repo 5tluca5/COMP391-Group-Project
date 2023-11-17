@@ -203,5 +203,6 @@ public class GameManager : MonoBehaviour
         // show game over page
 
         isGameOvered = true;
+        AutoSave();
     }
 }
