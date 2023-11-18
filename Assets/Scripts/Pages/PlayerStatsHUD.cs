@@ -40,7 +40,7 @@ public class PlayerStatsHUD : MonoBehaviour
     {
         _gameManager.SubscribeAbilityLevel(AbilityType.MaxHP).Subscribe(x =>
         {
-            _playerMaxHealth = (int)(GameConstant.Initial_HP + _gameManager.GetAbility(AbilityType.MaxHP).GetCurrentEffect());
+            _playerMaxHealth = (int)GameManager.Instance.GetMaxHP();
             DisplayHearts();
             //DisplayCurrentHearts();
         }).AddTo(this);
