@@ -22,6 +22,17 @@ public class EnemyManager : MonoBehaviour
     {
         InvokeRepeating("RemoveDeadZombies", 0.5f, 0.5f);
     }
+    public void Reset()
+    {
+        enemies.ForEach(x => Destroy(x.gameObject));
+        enemies.Clear();
+
+        if(boss != null)
+        {
+            Destroy(boss.gameObject);
+            boss = null;
+        }
+    }
 
     public void SetZombieSpawning(bool isEnable)
     {
@@ -100,12 +111,7 @@ public class EnemyManager : MonoBehaviour
     {
         return bounds.Contains(position);
     }
-
-    private void Reset()
-    {
-        enemies.ForEach(x => Destroy(x.gameObject));
-        enemies.Clear();
-    }
+    
 
     private void RemoveDeadZombies()
     {

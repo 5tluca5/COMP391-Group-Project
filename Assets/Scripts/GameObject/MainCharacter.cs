@@ -225,4 +225,11 @@ public class MainCharacter : MonoBehaviour {
     {
         m_globalLight.color = Color.red;
     }
+
+    public void Reset()
+    {
+        m_globalLight.color = new Color(45, 158, 255);
+        m_animator.SetTrigger("DeathEnded");
+        RestoreHP((int)GameManager.Instance.GetMaxHP());
+    }
 }

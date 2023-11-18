@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UniRx;
 using UnityEngine.UI;
+using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
     public EnemyManager enemyManager;
     public MainUIManager mainUIManager;
     public CountdownTimer timer;
+    public Light2D globalLight;
 
     // Boss HP bar (Lucas: Too lazy to create a class hehe)
     public GameObject bossHpGO;
@@ -70,6 +72,8 @@ public class GameManager : MonoBehaviour
 
         timer.SubscribeTimeRunOut().Subscribe(x =>
         {
+            globalLight.color = Color.red;
+
             enemyManager.SetZombieSpawning(false);
             enemyManager.KillAllZombies();
 
@@ -238,5 +242,14 @@ public class GameManager : MonoBehaviour
         AutoSave();
         mainUIManager.OpenGameOverPage();
         //ReloadScene();
+    }
+
+    public void RestartGame()
+    {
+        enemyManager.Reset();
+        player.Reset();
+        timer.Reset();
+
+        globalLight.color = new Color(83, 215, 255);
     }
 }

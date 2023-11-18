@@ -22,6 +22,12 @@ public class CountdownTimer : MonoBehaviour
     {
     }
 
+    public void Reset()
+    {
+        timeRemaining = GameConstant.Wave_Timer;
+        timerIsRunning = true;
+    }
+
     void Update()
     {
         if (timerIsRunning)

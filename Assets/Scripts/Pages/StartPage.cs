@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using System;
 
 public class StartPage : MonoBehaviour
 {
@@ -42,6 +43,16 @@ public class StartPage : MonoBehaviour
         StartGame();
     }
 
+    public void OnClickSettingButton()
+    {
+
+    }
+
+    public void OnClickQuitButton()
+    {
+        Application.Quit();
+    }
+
     void StartGame()
     {
         transiting = true;
@@ -56,4 +67,6 @@ public class StartPage : MonoBehaviour
             mainUIManager.ShowTimer();
         };
     }
+
+    
 }
