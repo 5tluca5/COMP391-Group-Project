@@ -17388,8 +17388,8 @@ GameObject:
   m_Component:
   - component: {fileID: 828033702}
   - component: {fileID: 828033703}
-  - component: {fileID: 828033704}
   - component: {fileID: 828033706}
+  - component: {fileID: 828033704}
   - component: {fileID: 828033705}
   m_Layer: 6
   m_Name: UpgradeDemonStatue
@@ -26789,9 +26789,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2104527012}
   - component: {fileID: 2104527013}
+  - component: {fileID: 2104527016}
   - component: {fileID: 2104527015}
   - component: {fileID: 2104527014}
-  - component: {fileID: 2104527016}
   m_Layer: 6
   m_Name: UpgradeDemonStatue
   m_TagString: Untagged
