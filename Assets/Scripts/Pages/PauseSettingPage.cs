@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UniRx;
 
 public class PauseSettingPage : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class PauseSettingPage : MonoBehaviour
     private Button _musicBtn;
     [SerializeField]
     private Button _effectBtn;
+    [SerializeField]
+    private Slider _musicSlider;
+    [SerializeField]
+    private Slider _effectSlider;
 
     [SerializeField]
     private AudioSource musicSource;
@@ -26,6 +31,18 @@ public class PauseSettingPage : MonoBehaviour
         _musicBtn.onClick.AddListener(ToggleMusic);
 
         _effectBtn.onClick.AddListener(ToggleSFX);
+
+        _musicSlider.value = musicSource.volume;
+        _effectSlider.value = effectsSource.volume;
+
+        _musicSlider.OnValueChangedAsObservable().Subscribe(_ =>
+        {
+            OnMusicValueChanged(_);
+        }).AddTo(this);
+        _effectSlider.OnValueChangedAsObservable().Subscribe(_ =>
+        {
+            OnEffectValueChanged(_);
+        }).AddTo(this);
     }
 
     private void ClosePage() 
@@ -40,5 +57,14 @@ public class PauseSettingPage : MonoBehaviour
     {
 
         effectsSource.mute = !effectsSource.mute;
+    }
+
+    public void OnMusicValueChanged(float value)
+    {
+        musicSource.volume = value;
+    }
+    public void OnEffectValueChanged(float value)
+    {
+        effectsSource.volume = value;
     }
 }
