@@ -110,13 +110,6 @@ public class MainCharacter : MonoBehaviour {
         }
 
 
-        if(Input.GetMouseButton(0))
-        {
-            // slow down
-            inputX *= 0.4f;
-            inputY *= 0.4f;
-        }
-
         // Swap direction of sprite depending on walk direction
         if (inputX > 0)
         {
@@ -130,6 +123,34 @@ public class MainCharacter : MonoBehaviour {
             GetComponent<SpriteRenderer>().flipX = true;
             weapons[0].SetPositionX(weapons[0].IsUltimate() ? 0.4f : 0.28f);
             weapons[1].SetPositionX(weapons[1].IsUltimate() ? -0.5f : -0.38f);
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            // slow down
+            inputX *= 0.4f;
+            inputY *= 0.4f;
+
+            // Get the mouse position on the screen
+            //Vector3 mouseScreenPos = Input.mousePosition;
+
+            //// Convert the mouse position to world position
+            //Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
+
+            //// Calculate the direction from the object to the mouse position
+            //Vector3 direction = mouseWorldPos - transform.position;
+
+            //// Calculate the angle between the object's forward vector and the direction
+            //var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+            //if (Mathf.Abs(angle) > 90f)
+            //{
+            //    GetComponent<SpriteRenderer>().flipX = true;
+            //}
+            //else if (Mathf.Abs(angle) <= 90f)
+            //{
+            //    GetComponent<SpriteRenderer>().flipX = false;
+            //}
         }
 
         // Move
@@ -184,6 +205,7 @@ public class MainCharacter : MonoBehaviour {
 
         if (m_curHP.Value <= 0)
         {
+            m_curHP.Value = 0;
             StartCoroutine(PerformDead());
         }
         else
@@ -228,7 +250,8 @@ public class MainCharacter : MonoBehaviour {
 
     public void Reset()
     {
-        m_globalLight.color = new Color(45, 158, 255);
+        m_invincible = false;
+        m_globalLight.color = new Color32(45, 158, 255, 255);
         m_animator.SetTrigger("DeathEnded");
         RestoreHP((int)GameManager.Instance.GetMaxHP());
     }

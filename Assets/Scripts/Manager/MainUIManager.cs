@@ -71,4 +71,15 @@ public class MainUIManager : MonoBehaviour
     {
     
     }
+
+    public void OnClickRestartButton()
+    {
+        _playerHUD.gameObject.SetActive(true);
+        _gameOverPage.SetActive(false);
+        GameManager.Instance.RestartGame();
+    }
+    public void OnClickQuitButton()
+    {
+        Application.Quit();
+    }
 }

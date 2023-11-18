@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UniRx;
 using UnityEngine.UI;
 using UnityEngine.Rendering.Universal;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -237,19 +238,29 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         // show game over page
-
         isGameOver = true;
         AutoSave();
+        enemyManager.SetZombieSpawning(false);
         mainUIManager.OpenGameOverPage();
         //ReloadScene();
     }
 
     public void RestartGame()
     {
+        bossHpGO.SetActive(false);
         enemyManager.Reset();
         player.Reset();
         timer.Reset();
+        isGameStarted = true;
+        isGameOver = false;
+        
+        if(globalLight.color == Color.red)
+        {
+            globalLight.color = new Color32(83, 215, 255, 255);
+        }
 
-        globalLight.color = new Color(83, 215, 255);
+        var items = GameObject.FindGameObjectsWithTag("Item").ToList();
+
+        items.ForEach(x => Destroy(x.gameObject));
     }
 }

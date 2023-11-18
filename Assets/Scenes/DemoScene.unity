@@ -6865,7 +6865,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: MAIN MENU
+  m_Text: QUIT
 --- !u!222 &692679879
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18310,7 +18310,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 985102327}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1280058157}
+        m_TargetAssemblyTypeName: MainUIManager, Assembly-CSharp
+        m_MethodName: OnClickQuitButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &985102327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22957,6 +22969,7 @@ MonoBehaviour:
   enemyManager: {fileID: 267853464}
   mainUIManager: {fileID: 1280058157}
   timer: {fileID: 145798376}
+  globalLight: {fileID: 1566842081}
   bossHpGO: {fileID: 1252836199}
   bossHpBarSlider: {fileID: 478011022}
 --- !u!4 &1654759864
@@ -24917,7 +24930,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1907911106}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1280058157}
+        m_TargetAssemblyTypeName: MainUIManager, Assembly-CSharp
+        m_MethodName: OnClickRestartButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1907911106
 MonoBehaviour:
   m_ObjectHideFlags: 0
