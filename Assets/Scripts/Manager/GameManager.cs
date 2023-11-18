@@ -253,8 +253,10 @@ public class GameManager : MonoBehaviour
         timer.Reset();
         isGameStarted = true;
         isGameOver = false;
-        
-        if(globalLight.color == Color.red)
+
+        enemyManager.SetZombieSpawning(true);
+
+        if (globalLight.color == Color.red)
         {
             globalLight.color = new Color32(83, 215, 255, 255);
         }
@@ -263,6 +265,5 @@ public class GameManager : MonoBehaviour
 
         items.ForEach(x => Destroy(x.gameObject));
 
-        enemyManager.SetZombieSpawning(true);
     }
 }

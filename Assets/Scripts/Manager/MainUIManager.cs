@@ -58,7 +58,7 @@ public class MainUIManager : MonoBehaviour
 
     public void OpenGameOverPage()
     {
-        //_playerHUD.gameObject.SetActive(false);
+        _playerHUD.gameObject.SetActive(false);
         _gameOverPage.SetActive(true);
     }
 
@@ -77,7 +77,6 @@ public class MainUIManager : MonoBehaviour
         _playerHUD.gameObject.SetActive(true);
         _gameOverPage.SetActive(false);
         GameManager.Instance.RestartGame();
-        _playerHUD.SetupView();
     }
     public void OnClickQuitButton()
     {
