@@ -22,6 +22,7 @@ public class PlayerStatsHUD : MonoBehaviour
 
     private int _playerCurrentHealth;
     private int _playerMaxHealth;
+    private int _playerPrevMaxHealth = 0;
     private int _currency;
     private MainCharacter _player;
 
@@ -49,7 +50,6 @@ public class PlayerStatsHUD : MonoBehaviour
         {
             _playerCurrentHealth = x;
             DisplayHearts();
-           // DisplayCurrentHearts();
         }).AddTo(this);
 
         _gameManager.SubscribeCurrency().Subscribe(x =>
@@ -67,15 +67,27 @@ public class PlayerStatsHUD : MonoBehaviour
 
     private void DisplayHearts() 
     {
-        //To display max hearts,
-        for (int i = 0; i < _playerMaxHealth; i++) 
+        if (_gameManager.IsGameOvered()) 
         {
-            if(!_hearts[i].gameObject.activeSelf)
-                _hearts[i].gameObject.SetActive(true);
-
-            _hearts[i].sprite = _heartSprites[0];
+            return;
         }
-        DisplayCurrentHearts();
+
+        if (_playerPrevMaxHealth == _playerMaxHealth)
+        {
+            DisplayCurrentHearts();
+        }
+        else 
+        {
+            _playerPrevMaxHealth = _playerMaxHealth;
+            //To display max hearts,
+            for (int i = 0; i < _playerMaxHealth; i++)
+            {
+                _hearts[i].gameObject.SetActive(true);
+                _hearts[i].sprite = _heartSprites[0];
+            }
+            DisplayCurrentHearts();
+        }
+
     }
 
     private void DisplayCurrentHearts()

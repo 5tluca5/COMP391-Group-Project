@@ -262,5 +262,7 @@ public class GameManager : MonoBehaviour
         var items = GameObject.FindGameObjectsWithTag("Item").ToList();
 
         items.ForEach(x => Destroy(x.gameObject));
+
+        enemyManager.SetZombieSpawning(true);
     }
 }
